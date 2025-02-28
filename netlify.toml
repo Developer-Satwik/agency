@@ -1,25 +1,24 @@
 [build]
   command = "npm run build"
-  publish = ".next"
-  ignore = "git log -1 --pretty=%B | grep dependabot"
+  publish = "out"
 
 [build.environment]
   NODE_VERSION = "18.18.0"
   NPM_VERSION = "9.6.7"
   NEXT_TELEMETRY_DISABLED = "1"
-  NEXT_PUBLIC_TARGET = "server"
   NODE_ENV = "production"
-  NEXT_SHARP_PATH = "/tmp/node_modules/sharp"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
-[[redirects]]
-  from = "/_next/static/*"
-  to = "/static/:splat"
-  status = 200
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/server"
+  to = "/index.html"
   status = 200

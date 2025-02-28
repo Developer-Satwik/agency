@@ -4,10 +4,12 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  output: 'standalone',
+  output: 'export',
+  distDir: '.next',
   experimental: {
-    optimizeCss: false
-  }
+    optimizeCss: true
+  },
+  trailingSlash: true
 };
 
 module.exports = nextConfig;
