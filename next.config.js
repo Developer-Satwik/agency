@@ -5,7 +5,7 @@ const nextConfig = {
     unoptimized: true,
   },
   output: 'export',
-  distDir: '.next',
+  distDir: 'out',
   experimental: {
     optimizeCss: true
   },
