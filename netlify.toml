@@ -1,13 +1,15 @@
 [build]
   command = "npm run build"
   publish = ".next"
+  ignore = "git log -1 --pretty=%B | grep dependabot"
 
 [build.environment]
   NODE_VERSION = "18.18.0"
   NPM_VERSION = "9.6.7"
   NEXT_TELEMETRY_DISABLED = "1"
-  NEXT_PRIVATE_TARGET = "server"
+  NEXT_PUBLIC_TARGET = "server"
   NODE_ENV = "production"
+  NEXT_SHARP_PATH = "/tmp/node_modules/sharp"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
