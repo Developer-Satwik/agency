@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
-    "@tailwindcss/forms": "^0.5.10"
+    "@tailwindcss/forms": "^0.5.10",
+    "@netlify/plugin-nextjs": "^4.41.3"
   }
 }
