@@ -1,0 +1,63 @@
+# Cursor Rules
+
+## Lessons
+
+### User Specified Lessons
+- Use the python3 venv in ./venv for executing Python tools
+- Include info useful for debugging in the program output
+- Read files before attempting to edit them
+- For git commits with multiline messages, write the message to a file first, then use `git commit -F <filename>`, and include "[Cursor] " prefix
+
+### Cursor Learned
+- Next.js project structure includes: pages/, components/, styles/, lib/, and public/ directories
+- Project uses React 19.0.0, Next.js 15.1.7, TypeScript 5.7.3, TailwindCSS 4.0.9
+- Animation libraries include Framer Motion 12.4.7 and GSAP 3.12.7
+
+## Scratchpad
+
+### Current Task: Designing a Social Media Growth Agency Website
+[X] Create .cursorrules file
+[X] Set up Next.js project structure
+[X] Initialize TailwindCSS configuration
+[X] Create core components:
+  [X] Layout structure with Header and Footer
+  [X] Custom cursor component for interactive experience
+[X] Create homepage with:
+  [X] Hero section with video background and animations
+  [X] Services section with interactive cards
+  [X] Stats section with counter animations
+  [X] Portfolio showcase with hover effects
+  [X] Testimonial section
+  [X] CTA section
+
+Next steps:
+[ ] Create additional pages:
+  [ ] Services page with detailed offerings
+  [ ] Portfolio/Case Studies page with comprehensive examples
+  [ ] About/Team page to showcase expertise
+  [ ] Contact page with form and information
+[ ] Implement additional animations and interactions:
+  [ ] Page transitions using Framer Motion
+  [ ] More scroll-triggered animations with GSAP
+  [ ] Interactive 3D elements or video content previews
+[ ] Add AI-powered feature (e.g., personalized recommendations)
+[ ] Ensure responsive design across all devices
+[ ] Optimize performance and accessibility
+
+### Design Requirements
+- **Style**: Bold minimalism with ample white space and striking visuals
+- **Typography**: Bold sans-serif fonts for impactful messaging
+- **Interactivity**: Subtle animations, game-like features, 3D visuals
+- **Navigation**: Unique, intuitive navigation experience
+- **Visual Elements**: Dynamic visuals, video loops, animated transitions
+- **Content Focus**: Portfolio showcasing viral growth successes
+- **Personalization**: Reflect agency's personality and expertise
+- **Responsiveness**: Fully functional across all device sizes
+
+### Project Overview
+This is a Next.js-based agency website with:
+- TypeScript for type safety
+- TailwindCSS for styling
+- Framer Motion and GSAP for animations
+- HeroIcons for icons
+- Focus on showcasing social media growth expertise for platforms like Instagram and TikTok 
