@@ -27,8 +27,8 @@
     "typescript": "^5.7.3"
   },
   "devDependencies": {
+    "@netlify/plugin-nextjs": "^4.41.3",
     "@svgr/webpack": "^8.1.0",
-    "@tailwindcss/forms": "^0.5.10",
-    "@netlify/plugin-nextjs": "^4.41.3"
+    "@tailwindcss/forms": "^0.5.10"
   }
 }
