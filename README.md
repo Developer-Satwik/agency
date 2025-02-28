@@ -107,8 +107,8 @@ Create a `.env.local` file with required environment variables for local develop
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is proprietary and confidential. All rights are reserved by RiseKlix Agency. See the LICENSE file for details.
 
 ## Contact
 
-RiseKlix - [contact@riseklix.com](mailto:contact@riseklix.com) 
+RiseKlix - [satwik@riseklix.com](mailto:contact@riseklix.com)
