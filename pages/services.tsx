@@ -81,21 +81,23 @@ export default function Services() {
       {/* Hero Section */}
       <section className="relative pt-44 pb-36 bg-dark text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* Modern gradient background with multiple layers */}
+          {/* Enhanced gradient background with multiple layers */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-dark to-dark opacity-90"></div>
-          <div className="absolute inset-0 bg-gradient-radial from-accent-600/30 to-dark z-10"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-accent-600/30 via-primary-500/20 to-dark z-10"></div>
           <div className="absolute inset-0 bg-noise opacity-5 mix-blend-soft-light"></div>
+          <div className="absolute inset-0 bg-gradient-conic from-primary-900/40 via-accent-900/20 to-primary-900/40 opacity-30 animate-spin-slow"></div>
           
-          {/* Dynamic Mesh Gradient */}
+          {/* Enhanced Mesh Gradient with Dynamic Effects */}
           <div className="absolute inset-0">
-            <div className="absolute top-0 left-0 w-full h-full opacity-30 bg-mesh-gradient"></div>
+            <div className="absolute top-0 left-0 w-full h-full opacity-30 bg-[linear-gradient(45deg,rgba(var(--primary-rgb),0.1)_25%,transparent_25%,transparent_50%,rgba(var(--primary-rgb),0.1)_50%,rgba(var(--primary-rgb),0.1)_75%,transparent_75%,transparent)] bg-[length:64px_64px] animate-gradient-scroll"></div>
           </div>
           
-          {/* Animated Particles and Orbs */}
+          {/* Enhanced Animated Particles and Orbs */}
           <div className="absolute inset-0">
-            <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-primary-500/20 filter blur-[100px] animate-float-slow"></div>
-            <div className="absolute bottom-1/3 right-1/3 w-64 h-64 rounded-full bg-accent-500/20 filter blur-[80px] animate-float-slow animation-delay-2000"></div>
-            <div className="absolute top-1/2 right-1/4 w-40 h-40 rounded-full bg-primary-400/20 filter blur-[60px] animate-float animation-delay-1000"></div>
+            <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-gradient-to-br from-primary-500/30 to-accent-500/20 filter blur-[100px] animate-float-slow"></div>
+            <div className="absolute bottom-1/3 right-1/3 w-64 h-64 rounded-full bg-gradient-to-tr from-accent-500/30 to-primary-500/20 filter blur-[80px] animate-float-slow animation-delay-2000"></div>
+            <div className="absolute top-1/2 right-1/4 w-40 h-40 rounded-full bg-gradient-to-bl from-primary-400/30 to-accent-400/20 filter blur-[60px] animate-float animation-delay-1000"></div>
+            <div className="absolute bottom-1/4 left-1/3 w-56 h-56 rounded-full bg-gradient-to-r from-neo-500/20 to-primary-500/20 filter blur-[70px] animate-pulse-slow"></div>
           </div>
           
           {/* Subtle Grid Pattern */}
@@ -110,9 +112,12 @@ export default function Services() {
               transition={{ duration: 1.5 }}
               className="mb-6 inline-block"
             >
-              <span className="inline-block py-1.5 px-4 bg-white/10 backdrop-blur-sm text-white/90 rounded-full text-sm font-medium border border-white/10 shadow-inner-light">
-                <span className="mr-1.5 inline-block w-1.5 h-1.5 rounded-full bg-accent-400 animate-pulse"></span>
-                Social Media Growth Services
+              <span className="inline-block py-2 px-6 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md text-white/90 rounded-full text-sm font-medium border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group">
+                <span className="mr-2 inline-block w-2 h-2 rounded-full bg-gradient-to-r from-accent-400 to-primary-400 animate-pulse group-hover:scale-110 transition-transform duration-300"></span>
+                <span className="relative inline-flex items-center">
+                  Social Media Growth Services
+                  <span className="absolute -right-1 -top-1 w-2 h-2 bg-primary-400 rounded-full opacity-75 animate-ping"></span>
+                </span>
               </span>
             </motion.div>
             
@@ -224,7 +229,7 @@ export default function Services() {
               Everything You Need to <span className="text-primary-600">Go Viral</span>
             </motion.h2>
             <motion.p 
-              className="max-w-2xl mx-auto text-xl text-gray-600"
+              className="max-w-2xl mx-auto text-xl text-gray-600 font-modern"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -281,8 +286,8 @@ export default function Services() {
                     </motion.div>
                   </div>
                   
-                  <h3 className="text-2xl font-display font-bold mb-3 group-hover:text-primary-600 transition-colors duration-300">{service.title}</h3>
-                  <p className="text-gray-600 mb-5">{service.description}</p>
+                  <h3 className="text-2xl font-retro mb-3 group-hover:text-primary-600 transition-colors duration-300">{service.title}</h3>
+                  <p className="text-gray-600 mb-5 font-modern">{service.description}</p>
                   
                   <div className="space-y-4 mb-6">
                     <h4 className="font-bold text-lg mb-3 flex items-center">

@@ -78,7 +78,7 @@ export default function Portfolio() {
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1 
-              className="text-5xl md:text-7xl font-display font-bold mb-6"
+              className="text-5xl md:text-7xl font-retro font-bold mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -86,7 +86,7 @@ export default function Portfolio() {
               Our <span className="text-primary-400">Success</span> Stories
             </motion.h1>
             <motion.p 
-              className="text-xl md:text-2xl text-gray-300 mb-10"
+              className="text-xl md:text-2xl text-gray-300 font-modern mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -171,10 +171,10 @@ export default function Portfolio() {
                     <span className="text-sm font-medium text-primary-600 uppercase tracking-wider">
                       {study.category}
                     </span>
-                    <h2 className="text-3xl md:text-4xl font-display font-bold mt-2 mb-4">
+                    <h2 className="text-3xl md:text-4xl font-retro font-bold mt-2 mb-4">
                       {study.title}
                     </h2>
-                    <p className="text-lg text-gray-600 mb-6">
+                    <p className="text-lg text-gray-600 font-modern mb-6">
                       {study.description}
                     </p>
                     
@@ -238,7 +238,7 @@ export default function Portfolio() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-retro font-bold text-center mb-16">
               Platforms We <span className="text-primary-600">Specialize</span> In
             </h2>
           </motion.div>
@@ -260,8 +260,8 @@ export default function Portfolio() {
                 >
                   <platform.icon className="w-full h-full" />
                 </motion.div>
-                <h3 className="text-xl font-display font-bold mb-3">{platform.name}</h3>
-                <p className="text-gray-600">{platform.description}</p>
+                <h3 className="text-xl font-retro font-bold mb-3">{platform.name}</h3>
+                <p className="text-gray-600 font-modern">{platform.description}</p>
               </motion.div>
             ))}
           </div>
@@ -423,4 +423,4 @@ const testimonials = [
     company: "TechNova",
     image: "/images/testimonials/testimonial-4.jpg"
   }
-]; 
+];

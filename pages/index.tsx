@@ -525,8 +525,8 @@ export default function Home() {
                     </motion.div>
                   </div>
 
-                  <h3 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white group-hover:text-neo-600 dark:group-hover:text-neo-400 transition-colors duration-300">{service.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6 flex-grow transition-colors duration-300">{service.description}</p>
+                  <h3 className="text-2xl font-general font-bold mb-4 text-gray-800 dark:text-white group-hover:text-neo-600 dark:group-hover:text-neo-400 transition-colors duration-300 tracking-tight">{service.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-6 flex-grow transition-colors duration-300 font-sans">{service.description}</p>
 
                   <Link
                     href={service.link}
@@ -539,7 +539,7 @@ export default function Home() {
                       whileHover={{ width: "100%" }}
                     ></motion.span>
                     <svg
-                      className="w-5 h-5 ml-2 transform group-hover/link:translate-x-1 transition-transform duration-300"
+                      className="w-5 h-5 ml-2 transition-transform duration-300"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -587,33 +587,17 @@ export default function Home() {
       </section>
 
       {/* Stats Section - 2025 Design Update */}
-      <section
-        className="py-32 bg-gradient-to-br from-primary-950 via-dark to-primary-950 relative overflow-hidden"
-        ref={statsRef}
-      >
-        {/* Background Elements - 2025 Design */}
-        <div className="absolute inset-0 bg-noise opacity-[0.08] mix-blend-soft-light"></div>
-        <div className="absolute top-0 left-0 w-full h-full bg-grid-dark opacity-[0.05]"></div>
-
-        {/* Enhanced Gradient Blobs */}
-        <div className="absolute top-0 left-1/4 w-2/3 h-2/3 bg-primary-600/10 rounded-full filter blur-[150px] animate-pulse-slow"></div>
-        <div className="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-accent-600/10 rounded-full filter blur-[150px] animate-pulse-slow animation-delay-2000"></div>
-        <div className="absolute top-1/2 right-10 w-32 h-32 bg-neo-500/15 rounded-full filter blur-[70px] animate-pulse-slow animation-delay-1000"></div>
-
-        {/* Enhanced Mesh Grid Lines */}
-        <div className="absolute inset-0 flex justify-between">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="h-full w-px bg-gradient-to-b from-white/0 via-white/5 to-white/0"></div>
-          ))}
-        </div>
-        <div className="absolute inset-0 flex flex-col justify-between">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="w-full h-px bg-gradient-to-r from-white/0 via-white/5 to-white/0"></div>
-          ))}
-        </div>
-
+      <section className="py-32 bg-gradient-to-br from-primary-950 via-dark to-primary-950 relative overflow-hidden" ref={statsRef}>
+        {/* Enhanced Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 via-bone-50 to-accent-50/50 opacity-70"></div>
+        <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-soft-light"></div>
+        <div className="absolute inset-0 bg-grid-light opacity-[0.03] pointer-events-none"></div>
+        
+        {/* Animated Background Elements */}
+        <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-to-br from-primary-100/20 to-primary-300/10 rounded-full filter blur-[100px] animate-float-slow"></div>
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-accent-100/20 to-accent-300/10 rounded-full filter blur-[80px] animate-float-slow animation-delay-2000"></div>
+        
         <div className="container relative z-10">
-          {/* Section Title - 2025 Design */}
           <motion.div
             className="text-center max-w-3xl mx-auto mb-20"
             initial={{ opacity: 0, y: 20 }}
@@ -621,14 +605,14 @@ export default function Home() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block py-2 px-5 bg-bone-50/5 backdrop-blur-xl border border-bone-50/10 rounded-full text-neo-400 text-sm font-medium mb-6">
-              <span className="mr-2 inline-block w-2 h-2 rounded-full bg-neo-500 animate-pulse"></span>
+            <span className="inline-block py-2 px-5 bg-white/80 backdrop-blur-sm border border-primary-100 rounded-full text-primary-600 text-sm font-medium mb-6 tracking-[0.02em] shadow-sm">
+              <span className="mr-2 inline-block w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse"></span>
               Our Growth Impact
             </span>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
+            <h2 className="text-[clamp(2.5rem,5vw+1rem,3.75rem)] font-display font-bold mb-8 text-gray-900 tracking-[-0.02em] leading-[1.1]">
               Results that <span className="gradient-text">Speak</span> for Themselves
             </h2>
-            <div className="h-1 w-32 bg-gradient-to-r from-neo-500 to-primary-500 mx-auto rounded-full"></div>
+            <div className="h-1 w-32 bg-gradient-to-r from-primary-500 to-accent-500 mx-auto rounded-full"></div>
           </motion.div>
 
           {/* Stats Grid - 2025 Design */}
@@ -649,59 +633,27 @@ export default function Home() {
                   transition: { type: "spring", stiffness: 300, damping: 10 }
                 }}
               >
-                <div className="relative h-full">
-                  {/* Card Glow Effect */}
-                  <div className="absolute -inset-1 bg-gradient-to-br from-neo-500/30 to-primary-500/30 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500"></div>
-
-                  {/* Card Background */}
-                  <div className="relative h-full rounded-2xl p-8 border border-white/10 backdrop-blur-xl transition-all duration-300 overflow-hidden">
-                    {/* Background Glass Effect */}
-                    <div className="absolute inset-0 bg-bone-50/5"></div>
-
-                    {/* Animated Background on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-neo-800/40 via-primary-900/30 to-dark opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="absolute inset-0 bg-noise opacity-[0.07]"></div>
-
-                    {/* Accent Lines */}
-                    <div className="absolute bottom-0 left-0 w-1/2 h-px bg-gradient-to-r from-neo-500/0 to-neo-500/50"></div>
-                    <div className="absolute top-0 right-0 w-1/2 h-px bg-gradient-to-l from-neo-500/0 to-neo-500/50"></div>
-
-                    {/* Content */}
-                    <div className="relative z-10 flex flex-col items-center">
-                      <h3 className="flex items-center">
-                        <span className="stat-number text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/80 text-5xl md:text-6xl xl:text-7xl font-bold" data-value={stat.value}>0</span>
-                        <span className={`text-neo-400 text-3xl md:text-4xl xl:text-5xl font-bold ${stat.plus || stat.percent ? 'ml-1' : ''}`}>
-                          {stat.plus ? '+' : stat.percent ? '%' : ''}
-                        </span>
-                      </h3>
-                      <div className="w-12 h-1 bg-gradient-to-r from-neo-500 to-primary-500 rounded-full mt-4 mb-4 transform transition-all duration-300 group-hover:scale-x-125 origin-center"></div>
-                      <p className="text-white/80 text-lg font-medium">{stat.label}</p>
-                    </div>
+                <div className="relative h-full p-8 rounded-2xl bg-white/80 backdrop-blur-sm border border-primary-100/20 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                  {/* Card Background Effects */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-accent-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500/0 via-primary-500/50 to-primary-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <div className="relative z-10 flex flex-col items-center">
+                    <h3 className="flex items-baseline mb-4">
+                      <span 
+                        className="stat-number text-[clamp(2.5rem,3vw+2rem,4rem)] bg-clip-text text-transparent bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 font-bold tracking-[-0.03em] tabular-nums" 
+                        data-value={stat.value}
+                      >0</span>
+                      <span className={`text-primary-500 text-[clamp(1.5rem,2vw+1rem,2.5rem)] font-bold ml-1 ${stat.plus || stat.percent ? 'ml-1' : ''}`}>
+                        {stat.plus ? '+' : stat.percent ? '%' : ''}
+                      </span>
+                    </h3>
+                    <div className="w-12 h-1 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full mb-4 transform transition-all duration-300 group-hover:scale-x-125 origin-center"></div>
+                    <p className="text-gray-600 text-[clamp(1rem,1vw+0.5rem,1.25rem)] font-medium tracking-wide">{stat.label}</p>
                   </div>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
-
-          {/* Stats CTA - 2025 Design */}
-          <motion.div
-            className="text-center mt-20"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <Link
-              href="/case-studies"
-              className="btn-outline text-white border-white/20 hover:border-neo-500/50 hover:bg-white/5 backdrop-blur-xl shadow-glow-sm group"
-            >
-              <span className="flex items-center">
-                Explore Our Case Studies
-                <svg className="w-5 h-5 ml-2 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-              </span>
-            </Link>
           </motion.div>
         </div>
       </section>
