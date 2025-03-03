@@ -115,19 +115,19 @@ const Header = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-bone-50/90 backdrop-blur-sm shadow-sm py-3' : 'bg-transparent py-5'}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-bone-50/80 backdrop-blur-sm shadow-sm py-3' : 'bg-transparent py-5'}`}
     >
       {/* Modern 2025 glass morphism background with improved visibility */}
       <div className={`absolute inset-0 transition-all duration-500 ${
         scrolled 
-          ? 'bg-bone-100/80 dark:bg-dark/70 backdrop-blur-3xl shadow-neo border-b border-bone-200/20' 
-          : 'bg-gradient-to-b from-bone-50/80 via-bone-100/50 to-transparent backdrop-blur-xl'
+          ? 'bg-bone-100/70 dark:bg-dark/60 backdrop-blur-2xl shadow-neo border-b border-bone-200/10' 
+          : 'bg-gradient-to-b from-bone-50/70 via-bone-100/40 to-transparent backdrop-blur-lg'
       }`}>
         {/* Advanced glass morphism effects */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Primary glass reflection */}
           <motion.div 
-            className={`absolute top-0 left-1/3 -translate-x-1/2 w-64 h-12 bg-gradient-to-r from-bone-100/30 via-bone-50/20 to-bone-100/30 rounded-full blur-2xl transition-opacity duration-700 ${scrolled ? 'opacity-60' : 'opacity-0'}`}
+            className={`absolute top-0 left-1/3 -translate-x-1/2 w-64 h-12 bg-gradient-to-r from-bone-100/20 via-bone-50/10 to-bone-100/20 rounded-full blur-2xl transition-opacity duration-700 ${scrolled ? 'opacity-50' : 'opacity-0'}`}
             animate={{
               x: [-10, 10, -10],
               rotate: [0, 5, 0],
@@ -140,7 +140,7 @@ const Header = () => {
           />
           {/* Secondary glass reflection */}
           <motion.div 
-            className={`absolute top-1/2 right-1/4 translate-x-1/2 w-32 h-12 bg-gradient-to-r from-bone-100/20 via-bone-50/10 to-bone-100/20 rounded-full blur-2xl transition-opacity duration-700 ${scrolled ? 'opacity-40' : 'opacity-0'}`}
+            className={`absolute top-1/2 right-1/4 translate-x-1/2 w-32 h-12 bg-gradient-to-r from-bone-100/10 via-bone-50/5 to-bone-100/10 rounded-full blur-2xl transition-opacity duration-700 ${scrolled ? 'opacity-30' : 'opacity-0'}`}
             animate={{
               x: [10, -10, 10],
               rotate: [0, -5, 0],
@@ -197,7 +197,7 @@ const Header = () => {
             variants={logoVariants}
             className="text-2xl font-retro font-bold flex items-center"
           >
-            <span className={`transition-colors duration-500 ${scrolled ? 'text-bone-900' : 'text-bone-50 shadow-text-lg'}`}>RISE</span>
+            <span className={`transition-colors duration-500 ${scrolled ? 'text-bone-900' : 'text-white shadow-text-lg'}`}>RISE</span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-bone-700 via-primary-500 to-bone-900 font-extrabold">KLIX</span>
             <span className="ml-2 relative h-3 w-3">
               <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 animate-pulse-slow shadow-glow-sm"></span>

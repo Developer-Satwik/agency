@@ -324,7 +324,7 @@ export default function Home() {
     <Layout>
       <SEO
         title="ViralGrowth - Social Media Growth Agency"
-        description="We help brands go viral on Instagram and TikTok with data-driven content strategies that drive real engagement and growth."
+        description="We help brands go viral with data-driven content strategies that drive real engagement and growth."
       />
 
       {/* Hero Section - 2025 Design Update */}
@@ -346,7 +346,7 @@ export default function Home() {
               </span>
             </motion.h1>
           <motion.p variants={staggerContainer} initial="hidden" animate="visible" className="text-xl md:text-2xl xl:text-3xl text-gray-100/90 mb-14 font-metropolis font-light leading-relaxed max-w-3xl backdrop-blur-[2px] shadow-text-lg [text-shadow:0_2px_5px rgba(0,0,0,0.2)] text-balance">
-            We help brands create content that captures attention, drives engagement, and generates explosive growth on Instagram and TikTok.
+            We help brands create content that captures attention, drives engagement, and generates explosive growth.
           </motion.p>
           <motion.div variants={buttonVariants} initial="hidden" animate="visible">
             <Link href="/get-started" className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden text-lg font-medium text-white transition duration-300 ease-out border-2 border-transparent rounded-lg shadow-md group bg-gradient-to-r from-blue-400 to-green-400 hover:from-green-300 hover:to-blue-300">
