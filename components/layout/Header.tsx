@@ -115,23 +115,19 @@ const Header = () => {
 
   return (
     <header 
-      className={`fixed top-0 z-40 w-full transition-all duration-500 ${
-        scrolled 
-          ? 'py-3' 
-          : 'py-5'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-bone-50/90 backdrop-blur-sm shadow-sm py-3' : 'bg-transparent py-5'}`}
     >
       {/* Modern 2025 glass morphism background with improved visibility */}
       <div className={`absolute inset-0 transition-all duration-500 ${
         scrolled 
-          ? 'bg-light/70 dark:bg-dark/70 backdrop-blur-3xl shadow-neo border-b border-white/10' 
-          : 'bg-gradient-to-b from-light/5 via-light/10 to-transparent backdrop-blur-xl'
+          ? 'bg-bone-100/80 dark:bg-dark/70 backdrop-blur-3xl shadow-neo border-b border-bone-200/20' 
+          : 'bg-gradient-to-b from-bone-50/80 via-bone-100/50 to-transparent backdrop-blur-xl'
       }`}>
         {/* Advanced glass morphism effects */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {/* Primary glass reflection */}
           <motion.div 
-            className={`absolute top-0 left-1/3 -translate-x-1/2 w-64 h-12 bg-gradient-to-r from-white/30 via-white/20 to-white/30 rounded-full blur-2xl transition-opacity duration-700 ${scrolled ? 'opacity-60' : 'opacity-0'}`}
+            className={`absolute top-0 left-1/3 -translate-x-1/2 w-64 h-12 bg-gradient-to-r from-bone-100/30 via-bone-50/20 to-bone-100/30 rounded-full blur-2xl transition-opacity duration-700 ${scrolled ? 'opacity-60' : 'opacity-0'}`}
             animate={{
               x: [-10, 10, -10],
               rotate: [0, 5, 0],
@@ -144,7 +140,7 @@ const Header = () => {
           />
           {/* Secondary glass reflection */}
           <motion.div 
-            className={`absolute top-1/2 right-1/4 translate-x-1/2 w-32 h-12 bg-gradient-to-r from-white/20 via-white/10 to-white/20 rounded-full blur-2xl transition-opacity duration-700 ${scrolled ? 'opacity-40' : 'opacity-0'}`}
+            className={`absolute top-1/2 right-1/4 translate-x-1/2 w-32 h-12 bg-gradient-to-r from-bone-100/20 via-bone-50/10 to-bone-100/20 rounded-full blur-2xl transition-opacity duration-700 ${scrolled ? 'opacity-40' : 'opacity-0'}`}
             animate={{
               x: [10, -10, 10],
               rotate: [0, -5, 0],
@@ -199,10 +195,10 @@ const Header = () => {
             animate="visible"
             whileHover="hover"
             variants={logoVariants}
-            className="text-2xl font-display font-bold flex items-center"
+            className="text-2xl font-retro font-bold flex items-center"
           >
-            <span className={`transition-colors duration-500 ${scrolled ? 'text-dark' : 'text-white shadow-text-lg'}`}>RISE</span>
-            <span className="gradient-text-neo font-extrabold">KLIX</span>
+            <span className={`transition-colors duration-500 ${scrolled ? 'text-bone-900' : 'text-bone-50 shadow-text-lg'}`}>RISE</span>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-bone-700 via-primary-500 to-bone-900 font-extrabold">KLIX</span>
             <span className="ml-2 relative h-3 w-3">
               <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 animate-pulse-slow shadow-glow-sm"></span>
             </span>
@@ -211,7 +207,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <motion.nav 
-          className="hidden md:flex items-center space-x-10"
+          className="hidden md:flex items-center space-x-10 font-modern"
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
@@ -220,10 +216,10 @@ const Header = () => {
             <motion.div key={item.name} variants={navItemVariants}>
               <Link
                 href={item.href}
-                className={`transition-all duration-300 font-medium relative overflow-hidden group interactive px-2 py-2 text-lg
+                className={`transition-all duration-300 font-modern relative overflow-hidden group interactive px-2 py-2 text-lg
                   ${scrolled 
                     ? 'text-dark hover:text-primary-600' 
-                    : 'text-white hover:text-primary-200 shadow-text-lg'
+                    : 'text-bone-50 hover:text-primary-200 shadow-text-lg'
                   }
                   ${router.pathname === item.href 
                     ? scrolled ? 'text-primary-600' : 'text-primary-200' 
@@ -233,7 +229,7 @@ const Header = () => {
                 {/* Fill effect on hover - Adaptive to scroll state */}
                 <span className={`absolute inset-0 w-full h-full rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out -z-10 ${
                   scrolled 
-                    ? 'bg-primary-50 dark:bg-primary-900/20' 
+                    ? 'bg-bone-50/80 dark:bg-primary-900/20' 
                     : 'bg-white/10'
                 }`}></span>
                 
@@ -242,7 +238,7 @@ const Header = () => {
                 {/* Enhanced hover effect with gradient - Adaptive to scroll state */}
                 <span className={`absolute bottom-0 left-0 w-full h-0.5 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${
                   scrolled
-                    ? 'bg-gradient-to-r from-primary-500 to-accent-500'
+                    ? 'bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600'
                     : 'bg-white/80'
                 }`}></span>
                 

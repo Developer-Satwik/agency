@@ -1,10 +1,4 @@
 {
-  "pages/404.tsx -> gsap": {
-    "id": "pages/404.tsx -> gsap",
-    "files": [
-      "static/chunks/_pages-dir-browser_node_modules_gsap_index_js.js"
-    ]
-  },
   "pages/_app.tsx -> gsap": {
     "id": "pages/_app.tsx -> gsap",
     "files": [
@@ -13,18 +7,6 @@
   },
   "pages/_app.tsx -> gsap/dist/ScrollTrigger": {
     "id": "pages/_app.tsx -> gsap/dist/ScrollTrigger",
-    "files": [
-      "static/chunks/_pages-dir-browser_node_modules_gsap_dist_ScrollTrigger_js.js"
-    ]
-  },
-  "pages/services.tsx -> gsap": {
-    "id": "pages/services.tsx -> gsap",
-    "files": [
-      "static/chunks/_pages-dir-browser_node_modules_gsap_index_js.js"
-    ]
-  },
-  "pages/services.tsx -> gsap/dist/ScrollTrigger": {
-    "id": "pages/services.tsx -> gsap/dist/ScrollTrigger",
     "files": [
       "static/chunks/_pages-dir-browser_node_modules_gsap_dist_ScrollTrigger_js.js"
     ]
