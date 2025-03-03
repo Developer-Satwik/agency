@@ -7,10 +7,10 @@ export const stats = [
     description: "Successful brand partnerships across industries"
   },
   {
-    value: "10",
-    plus: true,
-    label: "Million Followers",
-    description: "Total audience reach across platforms"
+    value: "85",
+    percent: true,
+    label: "Viral Rate",
+    description: "Content reaching viral status within 48 hours"
   },
   {
     value: "300",
@@ -19,9 +19,9 @@ export const stats = [
     description: "Typical follower growth within 3 months"
   },
   {
-    value: "95",
-    percent: true,
-    label: "Client Satisfaction",
-    description: "Brands happy with our results"
+    value: "25",
+    plus: true,
+    label: "Million Views",
+    description: "Monthly content views across platforms"
   }
 ];

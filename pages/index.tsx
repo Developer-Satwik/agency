@@ -117,7 +117,7 @@ const services = [
 const stats = [
   { value: '500+', label: 'Clients', plus: true },
   { value: '25M+', label: 'Followers Gained', plus: true },
-  { value: '3B+', label: 'Total Impressions', plus: true },
+  { value: '200M+', label: 'Total Impressions', plus: true },
   { value: '97%', label: 'Satisfaction Rate', percent: true }
 ];
 
@@ -588,15 +588,6 @@ export default function Home() {
 
       {/* Stats Section - 2025 Design Update */}
       <section className="py-32 bg-gradient-to-br from-primary-950 via-dark to-primary-950 relative overflow-hidden" ref={statsRef}>
-        {/* Enhanced Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 via-bone-50 to-accent-50/50 opacity-70"></div>
-        <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-soft-light"></div>
-        <div className="absolute inset-0 bg-grid-light opacity-[0.03] pointer-events-none"></div>
-        
-        {/* Animated Background Elements */}
-        <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-to-br from-primary-100/20 to-primary-300/10 rounded-full filter blur-[100px] animate-float-slow"></div>
-        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-accent-100/20 to-accent-300/10 rounded-full filter blur-[80px] animate-float-slow animation-delay-2000"></div>
-        
         <div className="container relative z-10">
           <motion.div
             className="text-center max-w-3xl mx-auto mb-20"
@@ -807,99 +798,73 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section - 2025 Design Update */}
-      <section
-        className="py-36 relative overflow-hidden"
-        ref={ctaRef}
-      >
+      {/* CTA Section - 2025 Design Update with Retro Typography */}
+      <section className="py-32 bg-gradient-to-br from-primary-900 via-dark to-primary-950 relative overflow-hidden font-retro">
         {/* Enhanced Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-950 via-dark to-primary-950"></div>
         <div className="absolute inset-0 bg-noise opacity-[0.08] mix-blend-soft-light"></div>
+        <div className="absolute inset-0 bg-grid-dark opacity-10"></div>
 
-        {/* Enhanced Animated Gradients */}
-        <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-primary-600/10 rounded-full filter blur-[200px] animate-pulse-slow"></div>
-        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-neo-500/10 rounded-full filter blur-[200px] animate-float-slow"></div>
-        <div className="absolute top-1/3 left-1/4 w-32 h-32 bg-accent-400/10 rounded-full filter blur-[100px] animate-spin-slow"></div>
-
-        {/* Enhanced Particle Effect */}
-        <div className="absolute inset-0 particles-container">
-          {Array.from({ length: 40 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white rounded-full animate-float-particle opacity-0"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                animationDuration: `${Math.random() * 10 + 20}s`,
-                animationDelay: `${Math.random() * 10}s`,
-                width: `${Math.random() * 4 + 1}px`,
-                height: `${Math.random() * 4 + 1}px`,
-              }}
-            ></div>
-          ))}
-        </div>
-
-        {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 bg-grid-dark opacity-[0.05]"></div>
+        {/* Dynamic Gradient Orbs */}
+        <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-to-br from-primary-500/10 to-accent-500/10 rounded-full filter blur-[120px] animate-float-slow"></div>
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-neo-500/10 to-primary-500/10 rounded-full filter blur-[100px] animate-float-delayed-slow"></div>
 
         <div className="container relative z-10">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={staggerContainer}
-          >
-            <motion.div
-              className="inline-block px-6 py-2 mb-8 rounded-full bg-neo-500/10 backdrop-blur-xl border border-neo-500/20"
-              variants={fadeInUp}
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.span 
+              className="inline-block py-2 px-5 bg-white/10 backdrop-blur-sm text-white/90 rounded-full text-sm font-medium border border-white/10 shadow-inner-light mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
-              <span className="text-neo-400 text-sm font-medium flex items-center">
-                <span className="mr-2 inline-block w-2 h-2 rounded-full bg-neo-500 animate-pulse"></span>
-                Ready for explosive growth?
-              </span>
-            </motion.div>
+              <span className="mr-2 inline-block w-2 h-2 rounded-full bg-accent-400 animate-pulse"></span>
+              Ready to Transform Your Brand?
+            </motion.span>
 
-            <motion.h2
-              className="text-5xl md:text-6xl xl:text-7xl font-bold mb-10 text-white"
-              variants={fadeInUp}
-              ref={ctaHeadingRef}
+            <motion.h2 
+              className="text-[clamp(2.5rem,4vw+1rem,4.5rem)] font-['BluuNext'] font-bold text-center mb-8 tracking-tight leading-[1.1] text-balance text-white"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
             >
-              Ready to <span className="gradient-text inline-block relative">
-                Go Viral
-                <svg className="absolute -bottom-2 left-0 w-full h-2.5 text-neo-500 opacity-70" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0 5 Q 25 0, 50 5 Q 75 10, 100 5" stroke="currentColor" strokeWidth="2.5" fill="none" />
-                </svg>
-              </span>?
+              Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-accent-400 to-neo-400 animate-gradient">Go Viral</span>?
             </motion.h2>
 
-            <motion.p
-              className="text-xl md:text-2xl xl:text-3xl text-gray-300 mb-12 font-light leading-relaxed"
-              variants={fadeInUp}
-              ref={ctaTextRef}
+            <motion.p 
+              className="text-[clamp(1.25rem,2vw+0.5rem,1.75rem)] font-metropolis font-light text-gray-300/90 mb-12 max-w-2xl mx-auto leading-relaxed text-balance"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
             >
               Let's transform your social media presence and take your brand to the next level with our proven strategies.
             </motion.p>
 
             <motion.div
-              variants={fadeInUp}
-              className="flex flex-col sm:flex-row items-center justify-center gap-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <Link
-                href="/contact"
-                className="btn-touch-light relative overflow-hidden px-8 py-4 rounded-xl text-lg font-medium group"
+              <Link 
+                href="/contact" 
+                className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white transition-all duration-500 ease-out bg-gradient-to-r from-primary-600 to-accent-600 rounded-xl overflow-hidden hover:scale-105 transform hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-dark"
               >
-                <span className="btn-content flex items-center relative z-10">
-                  Get Started Today
-                  <svg className="w-5 h-5 ml-2 transition-all duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                <span className="relative z-10">Get Started Today</span>
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent-600 to-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></div>
+                <div className="absolute right-0 w-8 h-8 transform translate-x-full group-hover:-translate-x-2 transition-transform duration-500 ease-out flex items-center justify-center">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
-                </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-neo-500 to-primary-500 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out z-0"></span>
+                </div>
               </Link>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
+
+        {/* Decorative Bottom Border */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-500/30 to-transparent"></div>
       </section>
     </Layout>
   );

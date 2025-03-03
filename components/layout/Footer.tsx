@@ -42,7 +42,7 @@ const staggerContainer = {
 
 const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-b from-dark via-dark/95 to-dark/90 text-white pt-24 pb-12 overflow-hidden backdrop-blur-xl border-t border-white/5">
+    <footer className="relative bg-gradient-to-b from-dark via-dark/95 to-dark/90 text-white pt-32 pb-16 overflow-hidden backdrop-blur-xl border-t border-white/5 font-metropolis">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-dark/80 to-transparent opacity-90"></div>
@@ -63,13 +63,13 @@ const Footer = () => {
             variants={fadeInUp}
           >
             <Link href="/" className="inline-block group">
-              <span className="text-4xl font-display font-bold flex items-center relative">
+              <span className="text-5xl font-bluunext font-bold flex items-center relative tracking-tight">
                 <span className="text-white group-hover:text-primary-400 transition-colors duration-300">RISE</span>
                 <span className="bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent group-hover:from-accent-400 group-hover:to-primary-400 transition-all duration-500">KLIX</span>
                 <div className="absolute -bottom-2 left-0 w-full h-0.5 bg-gradient-to-r from-primary-500/0 via-primary-500 to-primary-500/0 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
               </span>
             </Link>
-            <p className="mt-8 text-gray-300/90 max-w-md text-lg leading-relaxed backdrop-blur-sm">
+            <p className="mt-10 text-gray-300/90 max-w-md text-lg leading-relaxed backdrop-blur-sm font-metropolis">
               We help brands create viral content for Instagram and TikTok that drives organic growth and real engagement.
             </p>
             <div className="mt-8 flex items-center space-x-6">
@@ -103,7 +103,7 @@ const Footer = () => {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
           >
-            <h3 className="text-xl font-display font-bold mb-6 text-white relative inline-block">
+            <h3 className="text-2xl font-bluunext font-bold mb-8 text-white relative inline-block tracking-tight">
               Navigate
               <div className="absolute -bottom-1 left-0 w-12 h-0.5 bg-primary-500/50"></div>
             </h3>
@@ -135,7 +135,7 @@ const Footer = () => {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
           >
-            <h3 className="text-xl font-display font-bold mb-6 text-white relative inline-block">
+            <h3 className="text-2xl font-bluunext font-bold mb-8 text-white relative inline-block tracking-tight">
               Services
               <div className="absolute -bottom-1 left-0 w-12 h-0.5 bg-primary-500/50"></div>
             </h3>
@@ -172,7 +172,7 @@ const Footer = () => {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
           >
-            <h3 className="text-xl font-display font-bold mb-6 text-white relative inline-block">
+            <h3 className="text-2xl font-bluunext font-bold mb-8 text-white relative inline-block tracking-tight">
               Get in Touch
               <div className="absolute -bottom-1 left-0 w-12 h-0.5 bg-primary-500/50"></div>
             </h3>
@@ -220,8 +220,8 @@ const Footer = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-primary-600/10 via-transparent to-accent-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
           <div className="grid md:grid-cols-2 gap-8 items-center relative z-10">
             <div>
-              <h3 className="text-2xl font-display font-bold mb-2">Stay Updated</h3>
-              <p className="text-gray-300">Get the latest social media growth strategies and industry news.</p>
+              <h3 className="text-3xl font-metropolis font-extrabold mb-4 tracking-tight">Stay Updated</h3>
+              <p className="text-gray-300 text-lg font-metropolis font-light">Get the latest social media growth strategies and industry news.</p>
             </div>
             <form className="flex flex-col sm:flex-row gap-3">
               <input 
