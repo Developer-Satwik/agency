@@ -189,8 +189,20 @@ export default function Services() {
       </section>
       
       {/* Services Cards */}
-      <section className="py-32 bg-light" ref={containerRef}>
-        <div className="container">
+      <section className="py-32 relative overflow-hidden" ref={containerRef}>
+        {/* Enhanced Background - Subtle elegant gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-bone-50 via-bone-100/30 to-bone-50/80 -z-10"></div>
+        
+        {/* Background Elements */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-1/4 right-1/4 w-72 h-72 rounded-full bg-bone-100/60 filter blur-[150px] opacity-60 -z-10"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-72 h-72 rounded-full bg-bone-200/60 filter blur-[150px] opacity-60 -z-10"></div>
+          <div className="absolute top-1/2 left-1/2 w-96 h-96 rounded-full bg-bone-100/40 filter blur-[180px] opacity-40 -z-10 transform -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute inset-0 bg-noise opacity-[0.02] mix-blend-soft-light z-0"></div>
+          <div className="absolute inset-0 bg-grid-light opacity-[0.03] pointer-events-none"></div>
+        </div>
+        
+        <div className="container relative z-10">
           <div className="text-center mb-16">
             <motion.span 
               className="inline-block py-1.5 px-4 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4 border border-primary-200/50 shadow-sm"
@@ -334,11 +346,11 @@ export default function Services() {
       </section>
       
       {/* Process Section */}
-      <section className="py-32 bg-gray-50 relative overflow-hidden">
+      <section className="py-32 bg-bone-50 relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-primary-100/40 to-primary-300/30 rounded-full filter blur-[100px] opacity-70 -z-10"></div>
-          <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-accent-100/40 to-accent-300/30 rounded-full filter blur-[80px] opacity-70 -z-10"></div>
+          <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-bone-100/40 to-bone-300/30 rounded-full filter blur-[100px] opacity-70 -z-10"></div>
+          <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-gradient-to-tr from-bone-200/40 to-bone-400/30 rounded-full filter blur-[80px] opacity-70 -z-10"></div>
         </div>
         <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-soft-light"></div>
         <div className="absolute inset-0 bg-grid-light opacity-[0.03]"></div>
@@ -613,11 +625,13 @@ export default function Services() {
       </section>
       
       {/* FAQ Section */}
-      <section className="py-32 bg-gray-50 relative">
+      <section className="py-32 bg-bone-50/80 relative overflow-hidden">
         {/* Background Elements */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-gradient-to-br from-primary-100/30 to-primary-200/20 filter blur-[100px]"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-gradient-to-tr from-accent-100/30 to-accent-200/20 filter blur-[80px]"></div>
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-1/3 right-1/5 w-64 h-64 rounded-full bg-bone-100/50 filter blur-[100px] opacity-60 -z-10"></div>
+          <div className="absolute bottom-1/4 left-1/3 w-72 h-72 rounded-full bg-bone-200/40 filter blur-[120px] opacity-50 -z-10"></div>
+          <div className="absolute inset-0 bg-noise opacity-[0.02] mix-blend-soft-light"></div>
+          <div className="absolute inset-0 bg-grid-light opacity-[0.03]"></div>
         </div>
         <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-soft-light"></div>
         <div className="absolute inset-0 bg-grid-light opacity-[0.02]"></div>
@@ -733,39 +747,16 @@ export default function Services() {
       </section>
       
       {/* CTA Section */}
-      <section className="py-36 bg-dark text-white relative overflow-hidden">
-        {/* Modern Gradient Background */}
+      <section className="py-24 bg-gradient-to-br from-bone-100/80 to-bone-200/50 relative overflow-hidden">
+        {/* Background Elements */}
         <div className="absolute inset-0 z-0">
-          {/* Base gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-dark to-dark opacity-90"></div>
-          
-          {/* Animated gradient mesh */}
-          <div className="absolute inset-0">
-            <div className="absolute top-0 left-0 w-full h-full opacity-40 bg-mesh-gradient"></div>
-          </div>
-          
-          {/* Dynamic orbs */}
-          <div className="absolute inset-0">
-            <div className="absolute top-1/4 right-1/4 w-80 h-80 rounded-full bg-primary-500/20 filter blur-[100px] animate-float-slow"></div>
-            <div className="absolute bottom-1/4 left-1/3 w-64 h-64 rounded-full bg-accent-500/20 filter blur-[100px] animate-float-slow animation-delay-2000"></div>
-            <motion.div 
-              className="absolute top-1/3 left-1/4 w-40 h-40 rounded-full bg-primary-400/20 filter blur-[80px]"
-              animate={{
-                y: [0, 30, 0],
-                opacity: [0.4, 0.6, 0.4]
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-          </div>
-          
-          {/* Overlay elements */}
-          <div className="absolute inset-0 bg-noise opacity-[0.07] mix-blend-soft-light"></div>
-          <div className="absolute inset-0 bg-grid-dark opacity-20"></div>
+          <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-bone-200/30 to-bone-300/20 rounded-full filter blur-[120px] opacity-70 -z-10"></div>
+          <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-gradient-to-tr from-bone-100/30 to-bone-300/20 rounded-full filter blur-[100px] opacity-60 -z-10"></div>
+          <div className="absolute inset-0 bg-noise opacity-[0.02] mix-blend-soft-light"></div>
+          <div className="absolute inset-0 bg-grid-light opacity-[0.02]"></div>
         </div>
+        <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-soft-light"></div>
+        <div className="absolute inset-0 bg-grid-light opacity-[0.03]"></div>
         
         <div className="container relative z-10">
           <motion.div 
@@ -1054,4 +1045,4 @@ const faqs = [
     question: "Do you offer one-time services or only ongoing packages?",
     answer: "We primarily focus on ongoing partnerships for sustainable growth, with most clients choosing 3-6 month engagements. However, we do offer strategy sessions and content creation packages for brands looking to start with a smaller commitment."
   }
-]; 
+];

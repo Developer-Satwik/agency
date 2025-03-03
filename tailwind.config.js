@@ -73,6 +73,18 @@ module.exports = {
           800: '#932e20',
           900: '#78291e',
         },
+        bone: {
+          50: '#FEFDFB',
+          100: '#FBF9F3',
+          200: '#F8F4E9',
+          300: '#F5EFE0',
+          400: '#F2EAD7',
+          500: '#EFE5CE',
+          600: '#E6D8B9',
+          700: '#D9C8A3',
+          800: '#CCB88E',
+          900: '#BFA878',
+        },
         dark: '#0A0F1E',
         darker: '#05070F',
         light: '#F9FAFC',
@@ -195,4 +207,4 @@ module.exports = {
       strategy: 'class',
     }),
   ],
-}; 
+};
