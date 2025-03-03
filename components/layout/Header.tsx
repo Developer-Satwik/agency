@@ -197,7 +197,7 @@ const Header = () => {
             variants={logoVariants}
             className="text-2xl font-retro font-bold flex items-center"
           >
-            <span className={`transition-colors duration-500 ${scrolled ? 'text-bone-900' : 'text-white shadow-text-lg'}`}>RISE</span>
+            <span className={`transition-colors duration-500 ${scrolled ? 'text-bone-900' : 'text-dark'}`}>RISE</span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-bone-700 via-primary-500 to-bone-900 font-extrabold">KLIX</span>
             <span className="ml-2 relative h-3 w-3">
               <span className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500 to-accent-500 animate-pulse-slow shadow-glow-sm"></span>
@@ -219,7 +219,7 @@ const Header = () => {
                 className={`transition-all duration-300 font-modern relative overflow-hidden group interactive px-2 py-2 text-lg
                   ${scrolled 
                     ? 'text-dark hover:text-primary-600' 
-                    : 'text-bone-50 hover:text-primary-200 shadow-text-lg'
+                    : 'text-bone-900 hover:text-primary-200 shadow-text-lg'
                   }
                   ${router.pathname === item.href 
                     ? scrolled ? 'text-primary-600' : 'text-primary-200' 
@@ -257,16 +257,13 @@ const Header = () => {
           <motion.div variants={navItemVariants}>
             <Link
               href="/contact"
-              className="btn-touch-dark btn-touch-arrow group relative overflow-hidden"
+              className="relative inline-flex items-center justify-center px-4 py-2 text-lg font-medium text-white transition duration-300 ease-out rounded-lg shadow-md bg-gradient-to-r from-blue-500 to-blue-700 hover:opacity-90"
+              aria-label="Get in Touch"
             >
-              <span className="btn-content">
-                Get in Touch
-                <svg className="w-4 h-4 btn-arrow group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                </svg>
-              </span>
-              {/* Enhanced touch button effect */}
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary-600/20 to-accent-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10 blur-sm"></span>
+              Get in Touch
+              <svg className="w-4 h-4 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
             </Link>
           </motion.div>
         </motion.nav>

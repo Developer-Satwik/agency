@@ -330,7 +330,7 @@ export default function Home() {
       {/* Hero Section - 2025 Design Update */}
       <section className="relative bg-cover bg-center h-screen" style={{ backgroundImage: `url('/hero.jpg')` }}>
         <motion.div variants={backgroundVariants} initial="hidden" animate="visible" className="flex flex-col items-center justify-center h-full text-white text-center">
-          <motion.h1 variants={staggerContainer} initial="hidden" animate="visible" className="text-6xl md:text-7xl xl:text-8xl font-retro mb-4 tracking-tight leading-[1.1] text-center">
+          <motion.h1 variants={staggerContainer} initial="hidden" animate="visible" className="text-[clamp(6rem,8vw+1rem,8rem)] font-retro mb-4 tracking-tight leading-[1.1] text-center">
             Make Your Brand <span className="relative overflow-hidden">
               <motion.span
                 variants={textVariants}
@@ -345,7 +345,7 @@ export default function Home() {
                 </svg>
               </span>
             </motion.h1>
-          <motion.p variants={staggerContainer} initial="hidden" animate="visible" className="text-xl md:text-2xl xl:text-3xl text-gray-100/90 mb-14 font-metropolis font-light leading-relaxed max-w-3xl backdrop-blur-[2px] shadow-text-lg [text-shadow:0_2px_5px rgba(0,0,0,0.2)] text-balance">
+          <motion.p variants={staggerContainer} initial="hidden" animate="visible" className="text-[clamp(1.5rem,2vw+0.5rem,2.5rem)] md:text-2xl xl:text-3xl text-gray-100/90 mb-14 font-metropolis font-light leading-[1.5] max-w-3xl backdrop-blur-[2px] shadow-text-lg [text-shadow:0_2px_5px rgba(0,0,0,0.2)] text-balance">
             We help brands create content that captures attention, drives engagement, and generates explosive growth.
           </motion.p>
           <motion.div variants={buttonVariants} initial="hidden" animate="visible">
