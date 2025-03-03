@@ -11,9 +11,14 @@ module.exports = {
         padding: "1.5rem",
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['ClashDisplay', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'Source Sans Pro', 'system-ui', 'sans-serif'],
+        display: ['Bluu Next', 'ClashDisplay', 'system-ui', 'sans-serif'],
         mono: ['Fira Code', 'monospace'],
+        metropolis: ['Metropolis', 'system-ui', 'sans-serif'],
+        lato: ['Lato', 'system-ui', 'sans-serif'],
+        general: ['General Sans', 'system-ui', 'sans-serif'],
+        retro: ['Bluu Next', 'serif'],
+        modern: ['Metropolis', 'Inter', 'sans-serif'],
       },
       fontSize: {
         '2xs': '0.625rem',

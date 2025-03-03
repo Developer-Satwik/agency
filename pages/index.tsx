@@ -330,7 +330,7 @@ export default function Home() {
       {/* Hero Section - 2025 Design Update */}
       <section className="relative bg-cover bg-center h-screen" style={{ backgroundImage: `url('/hero.jpg')` }}>
         <motion.div variants={backgroundVariants} initial="hidden" animate="visible" className="flex flex-col items-center justify-center h-full text-white text-center">
-          <motion.h1 variants={staggerContainer} initial="hidden" animate="visible" className="text-6xl md:text-7xl xl:text-8xl font-bold mb-4 tracking-tight leading-[1.1] text-center">
+          <motion.h1 variants={staggerContainer} initial="hidden" animate="visible" className="text-6xl md:text-7xl xl:text-8xl font-retro mb-4 tracking-tight leading-[1.1] text-center">
             Make Your Brand <span className="relative overflow-hidden">
               <motion.span
                 variants={textVariants}
@@ -345,7 +345,7 @@ export default function Home() {
                 </svg>
               </span>
             </motion.h1>
-          <motion.p variants={staggerContainer} initial="hidden" animate="visible" className="text-xl md:text-2xl xl:text-3xl text-gray-100/90 mb-14 font-light leading-relaxed max-w-3xl backdrop-blur-[2px] shadow-text-lg [text-shadow:0_2px_5px rgba(0,0,0,0.2)] text-balance">
+          <motion.p variants={staggerContainer} initial="hidden" animate="visible" className="text-xl md:text-2xl xl:text-3xl text-gray-100/90 mb-14 font-metropolis font-light leading-relaxed max-w-3xl backdrop-blur-[2px] shadow-text-lg [text-shadow:0_2px_5px rgba(0,0,0,0.2)] text-balance">
             We help brands create content that captures attention, drives engagement, and generates explosive growth on Instagram and TikTok.
           </motion.p>
           <motion.div variants={buttonVariants} initial="hidden" animate="visible">
@@ -419,7 +419,7 @@ export default function Home() {
                 </span>
               </span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 tracking-tight">
+            <h2 className="text-5xl md:text-6xl font-retro mb-8 tracking-tight">
               Our <span className="relative inline-block">
                 <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-neo-500 to-accent-500 animate-gradient-x">Services</span>
                 <motion.svg
@@ -436,7 +436,7 @@ export default function Home() {
               </span>
             </h2>
             <motion.p
-              className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed"
+              className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-general"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
