@@ -6,14 +6,14 @@ const navigationItems = [
   { name: 'Home', href: '/' },
   { name: 'Services', href: '/services' },
   { name: 'About', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'Schedule Call', href: 'https://calendly.com/riseklix/30min' },
 ];
 
 const socialLinks = [
-  { name: 'Instagram', href: 'https://instagram.com', icon: 'instagram' },
-  { name: 'TikTok', href: 'https://tiktok.com', icon: 'tiktok' },
-  { name: 'Twitter', href: 'https://twitter.com', icon: 'twitter' },
-  { name: 'LinkedIn', href: 'https://linkedin.com', icon: 'linkedin' },
+  { name: 'Instagram', href: 'https://instagram.com/riseklix', icon: 'instagram' },
+  { name: 'TikTok', href: 'https://tiktok.com/riseklix', icon: 'tiktok' },
+  { name: 'Twitter', href: 'https://twitter.com/riseklixagency', icon: 'twitter' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/riseklix/', icon: 'linkedin' },
 ];
 
 // Animation variants
@@ -194,11 +194,13 @@ const Footer = () => {
             </ul>
             <div className="mt-8">
               <Link 
-                href="/contact"
+                href="https://calendly.com/riseklix/30min"
                 className="inline-flex items-center px-6 py-3 bg-primary-600/10 hover:bg-primary-600/20 border border-primary-500/20 hover:border-primary-500/40 rounded-xl text-white transition-all duration-300 group relative overflow-hidden"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <span className="relative z-10 flex items-center">
-                  Contact Us
+                  Schedule a Call
                   <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                   </svg>

@@ -256,9 +256,11 @@ const Header = () => {
           
           <motion.div variants={navItemVariants}>
             <Link
-              href="/contact"
+              href="https://calendly.com/riseklix/30min"
               className="relative inline-flex items-center justify-center px-4 py-2 text-lg font-medium text-white transition duration-300 ease-out rounded-lg shadow-md bg-gradient-to-r from-blue-500 to-blue-700 hover:opacity-90"
               aria-label="Get in Touch"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Get in Touch
               <svg className="w-4 h-4 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -346,7 +348,7 @@ const Header = () => {
               {/* Mobile Footer */}
               <div className="mt-8 pt-6 border-t border-gray-200/50 dark:border-gray-700/30">
                 <Link
-                  href="/contact"
+                  href="https://calendly.com/riseklix/discovery"
                   onClick={() => setIsOpen(false)}
                   className="w-full btn-touch-dark block text-center group relative overflow-hidden"
                 >

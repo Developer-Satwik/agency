@@ -193,7 +193,7 @@ export default function About() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Link href="/contact" className="btn-touch-light inline-flex items-center py-4 px-8 rounded-xl text-lg">
+              <Link href="https://calendly.com/riseklix/30min" className="btn-touch-light inline-flex items-center py-4 px-8 rounded-xl text-lg">
                 <span className="btn-content font-medium">
                   Get in Touch
                   <svg className="w-5 h-5 ml-2 btn-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -232,7 +232,7 @@ export default function About() {
                 Today, we blend advanced analytics with creative storytelling, using AI-enhanced tools alongside human intuition. This dual approach allows us to identify emerging trends and create content that not only captures attention but drives meaningful business results for our clients.
               </p>
               <div className="flex flex-wrap gap-5">
-                <Link href="/contact" className="btn-touch-dark py-4 px-8 rounded-xl text-lg">
+                <Link href="https://calendly.com/riseklix/30min" className="btn-touch-dark py-4 px-8 rounded-xl text-lg">
                   <span className="btn-content font-medium">
                     Work With Us
                     <svg className="w-5 h-5 ml-2 btn-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -412,7 +412,7 @@ export default function About() {
                 className="flex flex-wrap justify-center gap-6"
               >
                 <Link 
-                  href="/contact" 
+                  href="https://calendly.com/riseklix/30min" 
                   className="btn-touch-light inline-flex items-center px-10 py-5 rounded-xl text-lg group"
                 >
                   <span className="btn-content">
@@ -631,4 +631,4 @@ const values = [
     description: "We measure our success by the tangible business impact we create for our clients through social media growth.",
     icon: ImpactIcon
   }
-]; 
+];

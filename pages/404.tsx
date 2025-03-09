@@ -94,10 +94,10 @@ export default function Custom404() {
               </Link>
               
               <Link 
-                href="/contact"
+                href="https://calendly.com/riseklix/30min"
                 className="px-6 py-3 rounded-lg border border-gray-600 hover:border-primary-600 hover:bg-primary-600/10 transition-colors"
               >
-                Contact Support
+                Schedule a Call
               </Link>
             </div>
             
@@ -136,4 +136,4 @@ export default function Custom404() {
       </section>
     </Layout>
   );
-} 
+}

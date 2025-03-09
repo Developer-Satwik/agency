@@ -176,7 +176,7 @@ export default function Services() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <Link href="/contact" className="btn-touch-light inline-flex items-center py-4 px-8 rounded-xl text-lg">
+              <Link href="https://calendly.com/riseklix/30min" className="btn-touch-light inline-flex items-center py-4 px-8 rounded-xl text-lg">
                 <span className="btn-content">
                   Get Started Today
                   <svg className="w-5 h-5 ml-2 btn-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -325,7 +325,7 @@ export default function Services() {
                   
                   <div className="pt-4 border-t border-gray-100">
                     <Link 
-                      href="/contact"
+                      href="https://calendly.com/riseklix/30min"
                       className="inline-flex items-center font-medium text-primary-600 hover:text-primary-700 transition-colors duration-300 relative group/link"
                     >
                       <span className="relative z-10">Get Started</span>
@@ -733,7 +733,7 @@ export default function Services() {
                       {/* Link to contact for more info */}
                       <div className="mt-4 pl-8">
                         <Link 
-                          href="/contact"
+                          href="https://calendly.com/riseklix/30min"
                           className="text-primary-600 inline-flex items-center text-sm font-medium hover:text-primary-800 transition-colors"
                         >
                           Still have questions?
@@ -830,7 +830,7 @@ export default function Services() {
               transition={{ duration: 0.7, delay: 0.3 }}
             >
               <Link 
-                href="/contact" 
+                href="https://calendly.com/riseklix/30min" 
                 className="btn-touch-light inline-flex items-center py-4 px-8 rounded-xl text-lg relative overflow-hidden group"
               >
                 <span className="btn-content">

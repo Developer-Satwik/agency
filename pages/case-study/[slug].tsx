@@ -337,7 +337,7 @@ export default function CaseStudy() {
                 <p className="text-gray-300 mb-6">
                   Let's discuss how we can help your brand achieve remarkable growth on social media.
                 </p>
-                <Link href="/contact" className="btn-primary w-full block text-center">
+                <Link href="https://calendly.com/riseklix/30min" className="btn-primary w-full block text-center">
                   Get in Touch
                 </Link>
               </div>
@@ -483,4 +483,4 @@ const executionSteps = [
     title: "Performance Tracking",
     description: "Detailed analytics dashboards monitored all KPIs in real-time, allowing for agile optimization."
   }
-]; 
+];

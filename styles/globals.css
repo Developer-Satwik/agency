@@ -413,3 +413,6 @@ body {
 .modern-scrollbar::-webkit-scrollbar-thumb {
   @apply bg-primary-500 rounded-full;
 }
+
+/* Import button components */
+@import './components/button.css';

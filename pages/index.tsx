@@ -349,12 +349,14 @@ export default function Home() {
             We help brands create content that captures attention, drives engagement, and generates explosive growth.
           </motion.p>
           <motion.div variants={buttonVariants} initial="hidden" animate="visible">
-            <Link href="/get-started" className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden text-lg font-medium text-white transition duration-300 ease-out border-2 border-transparent rounded-lg shadow-md group bg-gradient-to-r from-blue-400 to-green-400 hover:from-green-300 hover:to-blue-300">
-              <span className="absolute inset-0 w-full h-full transition-all duration-300 ease-out transform -translate-x-full bg-gradient-to-r from-blue-400 to-green-400 group-hover:translate-x-0"></span>
-              <span className="relative z-10">Get Started</span>
-              <svg className="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-              </svg>
+            <Link href="https://calendly.com/riseklix/30min" className="btn-gradient">
+              <span className="btn-overlay"></span>
+              <span className="btn-content">
+                Get Started Today
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </span>
             </Link>
           </motion.div>
         </motion.div>
