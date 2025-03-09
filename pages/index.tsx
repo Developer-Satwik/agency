@@ -353,8 +353,8 @@ export default function Home() {
               <span className="btn-overlay"></span>
               <span className="btn-content">
                 Get Started Today
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
               </span>
             </Link>
@@ -671,7 +671,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <Link 
-                href="/contact" 
+                href="https://calendly.com/riseklix/30min" 
                 className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white transition-all duration-500 ease-out bg-gradient-to-r from-primary-600 to-accent-600 rounded-xl overflow-hidden hover:scale-105 transform hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-dark"
               >
                 <span className="relative z-10">Get Started Today</span>
