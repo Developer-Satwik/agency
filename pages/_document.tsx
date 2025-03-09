@@ -23,6 +23,18 @@ class MyDocument extends Document {
           <meta property="twitter:title" content="RiseKlix Agency | Instagram & TikTok Growth Experts" />
           <meta property="twitter:description" content="We help brands go viral and grow on Instagram and TikTok with targeted short-form content strategies." />
           <meta property="twitter:image" content="/images/og-image.jpg" />
+          {/* Google Analytics */}
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FT1WF8JK3" />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-XXXXXXXXXX');
+              `,
+            }}
+          />
         </Head>
         <body>
           <Main />
@@ -33,4 +45,4 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument; 
+export default MyDocument;
