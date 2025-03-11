@@ -130,21 +130,16 @@ export default function About() {
                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
               >
                 <span className="relative z-10 text-white">Digital Presence</span>
-                <motion.span 
-                  className="absolute -bottom-2 left-0 w-full h-4 bg-gradient-to-r from-accent-500/60 via-primary-400/60 to-accent-500/60 rounded-md backdrop-blur-sm -z-0"
-                  initial={{ width: "0%", left: "50%" }}
-                  animate={{ width: "100%", left: "0%" }}
-                  transition={{ duration: 0.7, delay: 0.8, ease: "easeOut" }}
-                ></motion.span>
-                <motion.span 
-                  className="absolute -bottom-2 left-0 w-full h-4 bg-gradient-to-r from-accent-500/60 via-primary-400/60 to-accent-500/60 rounded-md opacity-0 -z-0 filter blur-sm"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.5 }}
-                  transition={{ duration: 0.7, delay: 0.8 }}
-                  style={{ 
-                    mixBlendMode: "overlay"
-                  }}
-                ></motion.span>
+                <motion.svg 
+                  className="absolute -bottom-2 left-0 w-full h-3 text-accent-500 opacity-70" 
+                  viewBox="0 0 100 15" 
+                  preserveAspectRatio="none"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 0.7 }}
+                  transition={{ duration: 1, delay: 0.8 }}
+                >
+                  <path d="M0 5 Q 25 15, 50 5 Q 75 -5, 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
+                </motion.svg>
                 <motion.div 
                   className="absolute -bottom-2 left-0 w-full"
                   initial={{ opacity: 0 }}
@@ -466,15 +461,83 @@ const SocialIcon = ({ platform }: { platform: string }) => {
 // Value icons
 const InnovationIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707M12 17v4M5.9 19.4l.53-.53A7 7 0 1112 5a7 7 0 016.57 9.87l.53.53" 
-      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    {/* Lightbulb - symbol of ideas and innovation */}
+    <path 
+      d="M9 18h6"
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M9 22h6"
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M12 2v2"
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M17 3.5l-1.5 1.5"
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M7 3.5l1.5 1.5"
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M22 12h-2"
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M2 12h2"
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M12 6a6 6 0 0 1 4 10.5l-1 1.5h-6l-1-1.5A6 6 0 0 1 12 6z"
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 const CollaborationIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9a3 3 0 100-6 3 3 0 000 6zM6 9a3 3 0 100-6 3 3 0 000 6zM18 21a3 3 0 100-6 3 3 0 000 6zM6 21a3 3 0 100-6 3 3 0 000 6zM9 6h6M9 18h6M14 15a2 2 0 104 0 2 2 0 00-4 0zM6 15a2 2 0 104 0 2 2 0 00-4 0zM14 9a2 2 0 104 0 2 2 0 00-4 0zM6 9a2 2 0 104 0 2 2 0 00-4 0z" 
-      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    {/* Handshake - universal symbol of partnership */}
+    <path 
+      d="M9 11l3 3m3-3l-3 3m-3-3l-6-3v7l6 3m6-7l6-3v7l-6 3m-6-3v7" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M3 8l6 3l6-3l6 3" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
   </svg>
 );
 

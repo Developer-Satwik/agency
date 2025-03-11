@@ -458,7 +458,7 @@ const Header = () => {
                 {/* Social Icons */}
                 <div className="mt-6 flex justify-center space-x-8 pb-2">
                   <a 
-                    href="https://instagram.com" 
+                    href="https://instagram.com/riseklix" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-dark dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 relative group p-2"
@@ -470,7 +470,7 @@ const Header = () => {
                     <span className="absolute inset-0 rounded-full bg-primary-500/10 opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-150 transition-all duration-300"></span>
                   </a>
                   <a 
-                    href="https://tiktok.com" 
+                    href="https://tiktok.com/riseklix" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="text-dark dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 relative group p-2"
