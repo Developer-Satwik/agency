@@ -293,16 +293,16 @@ export default function About() {
               {companyHistory.map((milestone, index) => (
                 <motion.div 
                   key={milestone.year} 
-                  className={`milestone relative ${index % 2 === 0 ? 'text-right pr-24 lg:ml-auto lg:mr-0' : 'text-left pl-24 lg:ml-0 lg:mr-auto'} max-w-md`}
+                  className={`milestone relative ${index % 2 === 0 ? 'text-right lg:ml-auto lg:mr-0' : 'text-left lg:ml-0 lg:mr-auto'} max-w-md`}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true, margin: "-100px" }}
                 >
-                  <div className="milestone-dot absolute left-1/2 top-0 w-12 h-12 bg-white flex items-center justify-center border-4 border-primary-500 rounded-full transform -translate-x-1/2 z-10 shadow-lg">
-                    <span className="text-primary-600 text-xs font-bold">{milestone.year.toString().slice(-2)}</span>
+                  <div className="milestone-dot absolute left-1/2 top-0 w-10 h-10 bg-white flex items-center justify-center border-4 border-primary-500 rounded-full transform -translate-x-1/2 z-10 shadow-lg">
+                    <div className="w-3 h-3 bg-primary-500 rounded-full"></div>
                   </div>
-                  <div className={`milestone-content p-6 bg-white rounded-2xl shadow-soft border border-gray-100 ${index % 2 === 0 ? 'lg:mr-6' : 'lg:ml-6'}`}>
+                  <div className={`milestone-content p-6 bg-white rounded-2xl shadow-soft border border-gray-100 mt-12 ${index % 2 === 0 ? 'mr-12 lg:mr-24' : 'ml-12 lg:ml-24'}`}>
                     <div className="inline-block px-3 py-1 mb-2 bg-primary-50 text-primary-700 text-sm font-medium rounded-md">{milestone.year}</div>
                     <h3 className="text-2xl font-display font-bold mb-3">{milestone.title}</h3>
                     <p className="text-gray-600 leading-relaxed">{milestone.description}</p>

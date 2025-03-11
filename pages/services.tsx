@@ -451,7 +451,7 @@ export default function Services() {
           <div className="relative">
             {/* Process Timeline */}
             <motion.div 
-              className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-200 via-primary-400 to-primary-200 transform -translate-x-1/2"
+              className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-200 via-primary-400 to-primary-200 transform -translate-x-1/2 z-10"
               initial={{ height: "100%", opacity: 1 }}
               whileInView={{ height: "100%", opacity: 1 }}
               viewport={{ once: true }}
@@ -459,7 +459,7 @@ export default function Services() {
             >
               {/* Animated particles moving along the timeline */}
               <motion.div 
-                className="absolute w-3 h-3 bg-primary-500 rounded-full left-1/2 transform -translate-x-1/2"
+                className="absolute w-3 h-3 bg-primary-500 rounded-full left-1/2 transform -translate-x-1/2 z-10"
                 animate={{
                   top: ["0%", "100%"],
                   opacity: [0, 1, 0]
@@ -471,7 +471,7 @@ export default function Services() {
                 }}
               />
               <motion.div 
-                className="absolute w-2 h-2 bg-primary-400 rounded-full left-1/2 transform -translate-x-1/2"
+                className="absolute w-2 h-2 bg-primary-400 rounded-full left-1/2 transform -translate-x-1/2 z-10"
                 animate={{
                   top: ["20%", "100%"],
                   opacity: [0, 1, 0]
@@ -505,7 +505,7 @@ export default function Services() {
                     {/* Step Number */}
                     <div className="relative md:w-1/2 flex justify-center md:justify-end">
                       <motion.div 
-                        className="w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center text-3xl font-display font-bold z-10 shadow-lg shadow-primary-500/20"
+                        className="w-20 h-20 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 text-white flex items-center justify-center text-3xl font-display font-bold z-20 shadow-lg shadow-primary-500/20 relative"
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 400, damping: 10 }}
                       >
@@ -513,7 +513,7 @@ export default function Services() {
                         
                         {/* Animated ring around number */}
                         <motion.div 
-                          className="absolute inset-0 rounded-full border-2 border-primary-400 opacity-0"
+                          className="absolute inset-0 rounded-full border-2 border-primary-400 opacity-0 z-20"
                           animate={{
                             scale: [1, 1.2, 1],
                             opacity: [0, 0.5, 0],
@@ -528,7 +528,7 @@ export default function Services() {
                       </motion.div>
                       {/* Hidden on mobile */}
                       <motion.div 
-                        className="hidden md:block absolute top-10 w-full h-1 bg-gradient-to-r from-transparent via-primary-200 to-transparent"
+                        className="hidden md:block absolute top-10 w-full h-1 bg-gradient-to-r from-transparent via-primary-200 to-transparent z-5"
                         initial={{ width: "100%", opacity: 1 }}
                         whileInView={{ width: "100%", opacity: 1 }}
                         viewport={{ once: true }}
