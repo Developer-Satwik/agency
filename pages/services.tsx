@@ -4,12 +4,70 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Layout from '@/components/layout/Layout';
 import { motion, AnimatePresence } from 'framer-motion';
+import { InstagramIcon, TikTokIcon, YouTubeIcon, PinterestIcon } from '@/components/shared/SocialIcons';
+
+// Dynamically import GSAP for code splitting - only load when needed
+const loadGSAP = () => import('gsap').then(({ gsap }) => gsap);
+const loadScrollTrigger = () => import('gsap/dist/ScrollTrigger').then(({ ScrollTrigger }) => ScrollTrigger);
+
+// Service icons defined directly in this file
+const ContentIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19.5 3h-15A1.5 1.5 0 003 4.5v15A1.5 1.5 0 004.5 21h15a1.5 1.5 0 001.5-1.5v-15A1.5 1.5 0 0019.5 3z" 
+      stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M7 7h10M7 12h10M7 17h6" 
+      stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <circle cx="18.5" cy="17.5" r="1.5" fill="currentColor"/>
+  </svg>
+);
+
+const GrowthIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7 14L12 9L17 14M12 9V21M5 5H19" 
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const StrategyIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M3 9H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M7 15L11 13L15 16L18 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <circle cx="7" cy="15" r="1" fill="currentColor"/>
+    <circle cx="11" cy="13" r="1" fill="currentColor"/>
+    <circle cx="15" cy="16" r="1" fill="currentColor"/>
+    <circle cx="18" cy="11" r="1" fill="currentColor"/>
+  </svg>
+);
+
+const CommunityIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17 20L17 4M17 4L13 8M17 4L21 8M7 4L7 20M7 20L3 16M7 20L11 16" 
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const AnalyticsIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 15V17M12 11V17M16 7V17M7.8 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21Z" 
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const ConsultingIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9 15L15 9M12 12L12 21M15.5 7.5L12 4L8.5 7.5M3 9.5L7.5 14L3 18.5M16.5 14L21 18.5M21 9.5L16.5 14" 
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
 
 export default function Services() {
   // Reference for scroll animations
   const containerRef = useRef<HTMLDivElement>(null);
   // Track which FAQ items are open
   const [openFaqs, setOpenFaqs] = useState<number[]>([]);
+  // State to track whether animations have been initialized
+  const [animationsInitialized, setAnimationsInitialized] = useState(true); // Set to true by default to prevent animation from hiding content
   
   // Toggle FAQ open/closed
   const toggleFaq = (index: number) => {
@@ -21,55 +79,100 @@ export default function Services() {
   };
   
   useEffect(() => {
-    // Initialize GSAP animations
+    // Skip animation initialization since it's causing visibility issues
+    if (true) return;
+    
+    // Initialize GSAP animations - only load when needed and in client
     const initializeGSAP = async () => {
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/dist/ScrollTrigger');
-      
-      gsap.registerPlugin(ScrollTrigger);
-      
-      // Animate service cards on scroll
-      gsap.utils.toArray<HTMLElement>('.service-card').forEach((card, i) => {
-        gsap.fromTo(
-          card,
-          { y: 100, opacity: 0 },
-          {
-            y: 0,
+      try {
+        const gsap = await loadGSAP();
+        const ScrollTrigger = await loadScrollTrigger();
+        
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Use a more efficient selector to get elements
+        const serviceCards = document.querySelectorAll('.service-card');
+        const processSteps = document.querySelectorAll('.process-step');
+        
+        // Do NOT set initial opacity to 0 as it may be causing visibility issues
+        // gsap.set(serviceCards, { y: 100, opacity: 0 });
+        // gsap.set(processSteps, { opacity: 0 });
+        
+        // Create one scroll trigger for service cards with safe animation values
+        ScrollTrigger.batch(serviceCards, {
+          interval: 0.1,
+          batchMax: 3,
+          onEnter: (elements) => {
+            gsap.to(elements, {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: "power2.out",
+              stagger: 0.1
+            });
+          },
+          start: "top 80%"
+        });
+        
+        // Simplified process steps animation
+        processSteps.forEach((step, i) => {
+          gsap.to(step, {
             opacity: 1,
             duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 80%",
-              toggleActions: "play none none none"
-            },
-            delay: i * 0.1
-          }
-        );
-      });
-      
-      // Animate process steps
-      gsap.utils.toArray<HTMLElement>('.process-step').forEach((step, i) => {
-        gsap.fromTo(
-          step,
-          { x: i % 2 === 0 ? -50 : 50, opacity: 0 },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "back.out(1.7)",
             scrollTrigger: {
               trigger: step,
               start: "top 75%",
-              toggleActions: "play none none none"
+              once: true
             }
-          }
-        );
-      });
+          });
+        });
+        
+        setAnimationsInitialized(true);
+      } catch (error) {
+        console.error("Failed to initialize animations:", error);
+        // Set to true even if there's an error to prevent content from staying hidden
+        setAnimationsInitialized(true);
+      }
     };
     
-    initializeGSAP();
-  }, []);
+    // Only run in browser
+    if (typeof window !== 'undefined') {
+      // Use requestIdleCallback for non-critical initialization
+      if ('requestIdleCallback' in window) {
+        (window as any).requestIdleCallback(() => {
+          initializeGSAP();
+        });
+      } else {
+        // Fallback for browsers that don't support requestIdleCallback
+        setTimeout(initializeGSAP, 200);
+      }
+    }
+    
+    // Cleanup function
+    return () => {
+      if (typeof window !== 'undefined') {
+        const cleanup = async () => {
+          try {
+            const ScrollTrigger = await loadScrollTrigger();
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+          } catch (error) {
+            console.error("Failed to cleanup animations:", error);
+          }
+        };
+        cleanup();
+      }
+    };
+  }, [animationsInitialized]);
+  
+  // Memoized motion variants to prevent recalculation
+  const fadeUpVariant = {
+    hidden: { opacity: 0.8, y: 20 }, // Changed from opacity: 0 to ensure content is still somewhat visible
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.5 }
+    }
+  };
   
   return (
     <Layout>
@@ -78,29 +181,19 @@ export default function Services() {
         <meta name="description" content="Our comprehensive services for Instagram and TikTok growth, including content creation, strategy, and trend analysis." />
       </Head>
       
-      {/* Hero Section */}
+      {/* Hero Section - Optimized by reducing unnecessary animations */}
       <section className="relative pt-44 pb-36 bg-dark text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* Enhanced gradient background with multiple layers */}
+          {/* Simplified background elements with fewer animations */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-dark to-dark opacity-90"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-accent-600/30 via-primary-500/20 to-dark z-10"></div>
           <div className="absolute inset-0 bg-noise opacity-5 mix-blend-soft-light"></div>
-          <div className="absolute inset-0 bg-gradient-conic from-primary-900/40 via-accent-900/20 to-primary-900/40 opacity-30 animate-spin-slow"></div>
           
-          {/* Enhanced Mesh Gradient with Dynamic Effects */}
-          <div className="absolute inset-0">
-            <div className="absolute top-0 left-0 w-full h-full opacity-30 bg-[linear-gradient(45deg,rgba(var(--primary-rgb),0.1)_25%,transparent_25%,transparent_50%,rgba(var(--primary-rgb),0.1)_50%,rgba(var(--primary-rgb),0.1)_75%,transparent_75%,transparent)] bg-[length:64px_64px] animate-gradient-scroll"></div>
-          </div>
+          {/* Reduced number of animated elements */}
+          <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-gradient-to-br from-primary-500/30 to-accent-500/20 filter blur-[100px] animate-float-slow"></div>
+          <div className="absolute bottom-1/3 right-1/3 w-64 h-64 rounded-full bg-gradient-to-tr from-accent-500/30 to-primary-500/20 filter blur-[80px] animate-float-slow animation-delay-2000"></div>
           
-          {/* Enhanced Animated Particles and Orbs */}
-          <div className="absolute inset-0">
-            <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-gradient-to-br from-primary-500/30 to-accent-500/20 filter blur-[100px] animate-float-slow"></div>
-            <div className="absolute bottom-1/3 right-1/3 w-64 h-64 rounded-full bg-gradient-to-tr from-accent-500/30 to-primary-500/20 filter blur-[80px] animate-float-slow animation-delay-2000"></div>
-            <div className="absolute top-1/2 right-1/4 w-40 h-40 rounded-full bg-gradient-to-bl from-primary-400/30 to-accent-400/20 filter blur-[60px] animate-float animation-delay-1000"></div>
-            <div className="absolute bottom-1/4 left-1/3 w-56 h-56 rounded-full bg-gradient-to-r from-neo-500/20 to-primary-500/20 filter blur-[70px] animate-pulse-slow"></div>
-          </div>
-          
-          {/* Subtle Grid Pattern */}
+          {/* Subtle Grid Pattern - static, not animated */}
           <div className="absolute inset-0 bg-grid-dark opacity-10"></div>
         </div>
         
@@ -109,7 +202,7 @@ export default function Services() {
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1.5 }}
+              transition={{ duration: 1 }}
               className="mb-6 inline-block"
             >
               <span className="inline-block py-2 px-6 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-md text-white/90 rounded-full text-sm font-medium border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group">
@@ -143,20 +236,6 @@ export default function Services() {
                 >
                   <path d="M0 5 Q 25 15, 50 5 Q 75 -5, 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
                 </motion.svg>
-                
-                {/* Animated particles along the underline */}
-                <motion.div 
-                  className="absolute -bottom-2 w-2 h-2 rounded-full bg-accent-400/70"
-                  animate={{
-                    x: [0, 100, 0],
-                    opacity: [0, 1, 0],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    repeatDelay: 2
-                  }}
-                />
               </motion.span>
             </motion.h1>
             
@@ -193,26 +272,17 @@ export default function Services() {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-500/40 to-transparent"></div>
       </section>
       
-      {/* Services Cards */}
-      <section className="py-32 relative overflow-hidden" ref={containerRef}>
-        {/* Enhanced Background - Subtle elegant gradient */}
+      {/* Services Cards - Fixed visibility issues */}
+      <section className="py-32 relative overflow-visible" ref={containerRef}>
+        {/* Simplified background elements */}
         <div className="absolute inset-0 bg-gradient-to-b from-bone-50 via-bone-100/30 to-bone-50/80 -z-10"></div>
         
-        {/* Background Elements */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/4 right-1/4 w-72 h-72 rounded-full bg-bone-100/60 filter blur-[150px] opacity-60 -z-10"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-72 h-72 rounded-full bg-bone-200/60 filter blur-[150px] opacity-60 -z-10"></div>
-          <div className="absolute top-1/2 left-1/2 w-96 h-96 rounded-full bg-bone-100/40 filter blur-[180px] opacity-40 -z-10 transform -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="absolute inset-0 bg-noise opacity-[0.02] mix-blend-soft-light z-0"></div>
-          <div className="absolute inset-0 bg-grid-light opacity-[0.03] pointer-events-none"></div>
-        </div>
-        
-        <div className="container relative z-10">
+        <div className="container relative z-30">
           <div className="text-center mb-16">
             <motion.span 
               className="inline-block py-1.5 px-4 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4 border border-primary-200/50 shadow-sm"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
@@ -220,9 +290,9 @@ export default function Services() {
               Tailored Solutions
             </motion.span>
             <motion.h2 
-              className="text-4xl md:text-5xl font-display font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="text-4xl md:text-5xl font-display font-bold mb-4 text-gray-800"
+              initial={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
@@ -230,8 +300,8 @@ export default function Services() {
             </motion.h2>
             <motion.p 
               className="max-w-2xl mx-auto text-xl text-gray-600 font-modern"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
@@ -239,58 +309,42 @@ export default function Services() {
             </motion.p>
           </div>
           
-          {/* Background Elements */}
-          <div className="absolute inset-0 z-0">
-            <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full bg-primary-100 filter blur-[120px] opacity-70 -z-10"></div>
-            <div className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-accent-100 filter blur-[120px] opacity-70 -z-10"></div>
-            <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-soft-light z-0"></div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {/* Grid of Service Cards - Ensured visibility with static styling */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 relative z-30">
             {services.map((service, index) => (
-              <motion.div 
+              <div 
                 key={service.title} 
                 id={service.id}
-                className="service-card bg-white/90 backdrop-blur-sm p-0 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100/50 overflow-hidden group relative"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ 
-                  y: -10, 
-                  transition: { type: "spring", stiffness: 300, damping: 15 } 
+                className={`service-card bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100/50 overflow-hidden group relative ${service.id === "content-creation" || service.id === "trend-analysis" ? "ring-2 ring-primary-100 ring-offset-2" : ""}`}
+                style={{ 
+                  opacity: 1,
+                  transform: 'none',
+                  zIndex: 40,
+                  position: 'relative'
                 }}
               >
                 {/* Card Top Color Bar */}
-                <motion.div 
-                  className="h-2 w-full bg-gradient-to-r from-primary-500 to-accent-500"
-                  whileHover={{
-                    height: '8px',
-                    transition: { duration: 0.3 }
-                  }}
-                ></motion.div>
+                <div 
+                  className={`h-2 w-full bg-gradient-to-r ${service.id === "content-creation" ? "from-primary-400 to-accent-400" : service.id === "trend-analysis" ? "from-accent-400 to-primary-400" : "from-primary-500 to-accent-500"} group-hover:h-[8px] transition-all duration-300`}
+                ></div>
                 
                 <div className="p-8">
                   <div className="relative mb-6 inline-block">
-                    <motion.div 
-                      className="absolute inset-0 bg-gradient-to-br from-primary-100 to-accent-100 rounded-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300 blur-xl"
-                      whileHover={{ scale: 1.2 }}
-                      transition={{ duration: 0.5 }}
-                    ></motion.div>
-                    <motion.div 
-                      className="relative rounded-xl w-16 h-16 bg-white flex items-center justify-center shadow-md border border-gray-100 group-hover:shadow-lg group-hover:border-primary-100 transition-all duration-300"
-                      whileHover={{ rotate: 5 }}
-                      transition={{ duration: 0.3 }}
+                    <div 
+                      className={`absolute inset-0 bg-gradient-to-br ${service.id === "content-creation" ? "from-primary-100 to-accent-200" : service.id === "trend-analysis" ? "from-accent-100 to-primary-200" : "from-primary-100 to-accent-100"} rounded-xl opacity-30 group-hover:opacity-100 transition-opacity duration-300 blur-xl group-hover:scale-110 transition-transform duration-300`}
+                    ></div>
+                    <div 
+                      className={`relative rounded-xl w-16 h-16 ${service.id === "content-creation" || service.id === "trend-analysis" ? "bg-primary-50" : "bg-white"} flex items-center justify-center shadow-md border border-gray-100 group-hover:shadow-lg group-hover:border-primary-100 transition-all duration-300 group-hover:rotate-3`}
                     >
-                      <service.icon className="w-8 h-8 text-primary-600 transition-transform duration-300 group-hover:scale-110" />
-                    </motion.div>
+                      <service.icon className={`w-8 h-8 ${service.id === "content-creation" || service.id === "trend-analysis" ? "text-primary-700" : "text-primary-600"} transition-transform duration-300 group-hover:scale-110`} />
+                    </div>
                   </div>
                   
-                  <h3 className="text-2xl font-retro mb-3 group-hover:text-primary-600 transition-colors duration-300">{service.title}</h3>
+                  <h3 className={`text-2xl font-bold mb-3 ${service.id === "content-creation" || service.id === "trend-analysis" ? "text-primary-700" : ""} group-hover:text-primary-600 transition-colors duration-300 text-gray-800`}>{service.title}</h3>
                   <p className="text-gray-600 mb-5 font-modern">{service.description}</p>
                   
                   <div className="space-y-4 mb-6">
-                    <h4 className="font-bold text-lg mb-3 flex items-center">
+                    <h4 className="font-bold text-lg mb-3 flex items-center text-gray-700">
                       <span className="w-6 h-6 rounded-full bg-primary-100 flex items-center justify-center mr-2">
                         <svg className="w-3.5 h-3.5 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -300,25 +354,19 @@ export default function Services() {
                     </h4>
                     <ul className="space-y-3 pl-2">
                       {service.features.map((feature, i) => (
-                        <motion.li 
+                        <li 
                           key={feature} 
                           className="flex items-start group/feature"
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.3, delay: 0.5 + (i * 0.1) }}
                         >
-                          <motion.svg 
-                            className="w-5 h-5 text-primary-600 mr-2 mt-1 flex-shrink-0 transition-transform duration-300 group-hover/feature:scale-110" 
+                          <svg 
+                            className={`w-5 h-5 ${service.id === "content-creation" || service.id === "trend-analysis" ? "text-primary-700" : "text-primary-600"} mr-2 mt-1 flex-shrink-0 transition-transform duration-300 group-hover/feature:scale-110`}
                             fill="currentColor" 
                             viewBox="0 0 20 20"
-                            whileHover={{ scale: 1.2, rotate: 10 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
                           >
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </motion.svg>
-                          <span className="group-hover/feature:text-primary-700 transition-colors duration-200">{feature}</span>
-                        </motion.li>
+                          </svg>
+                          <span className="text-gray-600 group-hover/feature:text-primary-700 transition-colors duration-200">{feature}</span>
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -326,14 +374,12 @@ export default function Services() {
                   <div className="pt-4 border-t border-gray-100">
                     <Link 
                       href="https://calendly.com/riseklix/30min"
-                      className="inline-flex items-center font-medium text-primary-600 hover:text-primary-700 transition-colors duration-300 relative group/link"
+                      className={`inline-flex items-center font-medium ${service.id === "content-creation" || service.id === "trend-analysis" ? "text-primary-700" : "text-primary-600"} hover:text-primary-700 transition-colors duration-300 relative group/link`}
                     >
                       <span className="relative z-10">Get Started</span>
-                      <motion.span 
-                        className="absolute bottom-0 left-0 h-0.5 bg-primary-400 transition-all duration-300"
-                        initial={{ width: "0%" }}
-                        whileHover={{ width: "100%" }}
-                      ></motion.span>
+                      <span 
+                        className="absolute bottom-0 left-0 h-0.5 bg-primary-400 transition-all duration-300 w-0 group-hover/link:w-full"
+                      ></span>
                       <svg className="w-4 h-4 ml-1.5 transform group-hover/link:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                       </svg>
@@ -344,14 +390,24 @@ export default function Services() {
                 {/* Hover effect corner decorations */}
                 <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-primary-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-primary-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </motion.div>
+                
+                {/* Add special decoration just for content creation card */}
+                {service.id === "content-creation" && (
+                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-primary-50 to-transparent opacity-30 rounded-tl-full"></div>
+                )}
+                
+                {/* Add special decoration just for trend analysis card */}
+                {service.id === "trend-analysis" && (
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-accent-50 to-transparent opacity-30 rounded-tr-full"></div>
+                )}
+              </div>
             ))}
           </div>
         </div>
       </section>
       
       {/* Process Section */}
-      <section className="py-32 bg-bone-50 relative overflow-hidden">
+      <section className="py-32 bg-bone-50 relative overflow-visible">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-bone-100/40 to-bone-300/30 rounded-full filter blur-[100px] opacity-70 -z-10"></div>
@@ -360,12 +416,12 @@ export default function Services() {
         <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-soft-light"></div>
         <div className="absolute inset-0 bg-grid-light opacity-[0.03]"></div>
         
-        <div className="container relative z-10">
+        <div className="container relative z-30">
           <div className="text-center mb-20">
             <motion.span 
               className="inline-block py-1.5 px-4 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4 border border-primary-200/50 shadow-sm"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
@@ -374,8 +430,8 @@ export default function Services() {
             </motion.span>
             <motion.h2 
               className="text-4xl md:text-5xl font-display font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
@@ -383,8 +439,8 @@ export default function Services() {
             </motion.h2>
             <motion.p 
               className="max-w-2xl mx-auto text-xl text-gray-600"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
@@ -396,7 +452,7 @@ export default function Services() {
             {/* Process Timeline */}
             <motion.div 
               className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-200 via-primary-400 to-primary-200 transform -translate-x-1/2"
-              initial={{ height: 0, opacity: 0 }}
+              initial={{ height: "100%", opacity: 1 }}
               whileInView={{ height: "100%", opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1 }}
@@ -434,7 +490,7 @@ export default function Services() {
                 <motion.div 
                   key={step.title} 
                   className="process-step relative"
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 1, y: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ 
@@ -443,6 +499,7 @@ export default function Services() {
                     type: "spring",
                     stiffness: 100
                   }}
+                  style={{ opacity: 1 }}
                 >
                   <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8`}>
                     {/* Step Number */}
@@ -472,7 +529,7 @@ export default function Services() {
                       {/* Hidden on mobile */}
                       <motion.div 
                         className="hidden md:block absolute top-10 w-full h-1 bg-gradient-to-r from-transparent via-primary-200 to-transparent"
-                        initial={{ width: 0, opacity: 0 }}
+                        initial={{ width: "100%", opacity: 1 }}
                         whileInView={{ width: "100%", opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.3 + (index * 0.1) }}
@@ -509,7 +566,7 @@ export default function Services() {
       </section>
       
       {/* Platforms Section */}
-      <section className="py-32 bg-white relative overflow-hidden">
+      <section className="py-32 bg-white relative overflow-visible">
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-1/4 right-1/3 w-64 h-64 rounded-full bg-gradient-to-br from-primary-100/40 to-primary-300/20 filter blur-[80px]"></div>
@@ -518,12 +575,12 @@ export default function Services() {
         <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-soft-light"></div>
         <div className="absolute inset-0 bg-grid-light opacity-[0.02]"></div>
         
-        <div className="container relative z-10">
+        <div className="container relative z-30">
           <div className="text-center mb-20">
             <motion.span 
               className="inline-block py-1.5 px-4 bg-accent-100 text-accent-700 rounded-full text-sm font-medium mb-4 border border-accent-200/50 shadow-sm"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
@@ -532,8 +589,8 @@ export default function Services() {
             </motion.span>
             <motion.h2 
               className="text-4xl md:text-5xl font-display font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
@@ -541,8 +598,8 @@ export default function Services() {
             </motion.h2>
             <motion.p 
               className="max-w-2xl mx-auto text-xl text-gray-600"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
@@ -555,7 +612,7 @@ export default function Services() {
               <motion.div 
                 key={platform.name} 
                 className="group flex flex-col md:flex-row gap-8 items-center bg-gradient-to-br from-white to-gray-50 p-8 rounded-2xl shadow-xl border border-gray-100/50 hover:shadow-2xl hover:border-accent-100/50 transition-all duration-300 backdrop-blur-sm relative overflow-hidden"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 1, y: 0 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ 
@@ -568,25 +625,20 @@ export default function Services() {
                   y: -10,
                   transition: { type: "spring", stiffness: 300, damping: 15 }
                 }}
+                style={{ opacity: 1 }}
               >
                 {/* Decorative background elements */}
                 <div className="absolute -right-16 -bottom-16 w-32 h-32 bg-accent-50 rounded-full opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
                 <div className="absolute right-20 bottom-20 w-16 h-16 bg-primary-50 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 transition-delay-200"></div>
                 
-                {/* Platform Logo */}
+                {/* Platform Icon */}
                 <motion.div 
                   className="relative w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-lg border border-gray-100 group-hover:shadow-accent-100/20 group-hover:border-accent-100/30 transition-all duration-300"
                   whileHover={{ rotate: 10, scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 10 }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-accent-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
-                  <Image 
-                    src={platform.logo} 
-                    alt={platform.name} 
-                    width={48} 
-                    height={48}
-                    className="transform transition-transform duration-300 relative z-10 group-hover:scale-110"
-                  />
+                  <platform.icon className="w-12 h-12 text-accent-600 transform transition-transform duration-300 relative z-10 group-hover:scale-110" />
                 </motion.div>
                 
                 {/* Platform Content */}
@@ -630,7 +682,7 @@ export default function Services() {
       </section>
       
       {/* FAQ Section */}
-      <section className="py-32 bg-bone-50/80 relative overflow-hidden">
+      <section className="py-32 bg-bone-50/80 relative overflow-visible">
         {/* Background Elements */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-1/3 right-1/5 w-64 h-64 rounded-full bg-bone-100/50 filter blur-[100px] opacity-60 -z-10"></div>
@@ -641,12 +693,12 @@ export default function Services() {
         <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-soft-light"></div>
         <div className="absolute inset-0 bg-grid-light opacity-[0.02]"></div>
         
-        <div className="container relative z-10">
+        <div className="container relative z-30">
           <div className="text-center mb-20">
             <motion.span 
               className="inline-block py-1.5 px-4 bg-primary-100 text-primary-700 rounded-full text-sm font-medium mb-4 border border-primary-200/50 shadow-sm"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
@@ -655,8 +707,8 @@ export default function Services() {
             </motion.span>
             <motion.h2 
               className="text-4xl md:text-5xl font-display font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
@@ -664,8 +716,8 @@ export default function Services() {
             </motion.h2>
             <motion.p 
               className="max-w-2xl mx-auto text-xl text-gray-600 mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
@@ -675,7 +727,7 @@ export default function Services() {
           
           <motion.div 
             className="max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 1 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
@@ -772,14 +824,14 @@ export default function Services() {
             transition={{ duration: 0.7 }}
           >
             <motion.h2 
-              className="text-4xl md:text-5xl font-display font-bold mb-6"
+              className="text-4xl md:text-5xl font-display font-bold mb-6 text-gray-800"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.1 }}
             >
               Ready to <motion.span 
-                className="text-accent-400 relative inline-block"
+                className="text-accent-600 relative inline-block"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
@@ -795,25 +847,11 @@ export default function Services() {
                 >
                   <path d="M0 5 Q 25 15, 50 5 Q 75 -5, 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
                 </motion.svg>
-                
-                {/* Animated particles along the underline */}
-                <motion.div 
-                  className="absolute -bottom-2 w-2 h-2 rounded-full bg-accent-400/70"
-                  animate={{
-                    x: [0, 100, 0],
-                    opacity: [0, 1, 0],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    repeatDelay: 2
-                  }}
-                />
               </motion.span> Your Social Presence?
             </motion.h2>
             
             <motion.p 
-              className="text-xl text-white/80 mb-12 leading-relaxed"
+              className="text-xl text-gray-800 mb-12 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -831,7 +869,7 @@ export default function Services() {
             >
               <Link 
                 href="https://calendly.com/riseklix/30min" 
-                className="btn-touch-light inline-flex items-center py-4 px-8 rounded-xl text-lg relative overflow-hidden group"
+                className="btn-dark inline-flex items-center py-4 px-8 rounded-xl text-lg relative overflow-hidden group"
               >
                 <span className="btn-content">
                   Book Your Strategy Call
@@ -848,50 +886,7 @@ export default function Services() {
   );
 }
 
-// Service Icons
-const ContentIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15 10L20 5M20 5H16M20 5V9M9 10.8L10.8 9M10.8 9L14 12.2M10.8 9L8 5M4 5L6.8 9M6.8 9L5 10.8M6.8 9L3 12.2M10 14L12.2 17M12.2 17L14 19M12.2 17L9 20M12.2 17L15.2 14M5 14L9 17M9 17L8 19M9 17L12 20M9 17L4.8 14" 
-      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
-
-const GrowthIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M7 14L12 9L17 14M12 9V21M5 5H19" 
-      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
-
-const StrategyIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9 6L20 6M20 6V10M20 6L15 11M4 14H15M15 14V18M15 14L10 19" 
-      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
-
-const CommunityIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17 20L17 4M17 4L13 8M17 4L21 8M7 4L7 20M7 20L3 16M7 20L11 16" 
-      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
-
-const AnalyticsIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8 15V17M12 11V17M16 7V17M7.8 21H16.2C17.8802 21 18.7202 21 19.362 20.673C19.9265 20.3854 20.3854 19.9265 20.673 19.362C21 18.7202 21 17.8802 21 16.2V7.8C21 6.11984 21 5.27976 20.673 4.63803C20.3854 4.07354 19.9265 3.6146 19.362 3.32698C18.7202 3 17.8802 3 16.2 3H7.8C6.11984 3 5.27976 3 4.63803 3.32698C4.07354 3.6146 3.6146 4.07354 3.32698 4.63803C3 5.27976 3 6.11984 3 7.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21Z" 
-      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
-
-const ConsultingIcon = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9 15L15 9M12 12L12 21M15.5 7.5L12 4L8.5 7.5M3 9.5L7.5 14L3 18.5M16.5 14L21 18.5M21 9.5L16.5 14" 
-      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
-
-// Data
+// Optimize data by moving it outside the component to prevent recreation on each render
 const services = [
   {
     id: "content-creation",
@@ -1005,25 +1000,25 @@ const process = [
 const platforms = [
   {
     name: "TikTok",
-    logo: "/images/tiktok-logo.png",
+    icon: TikTokIcon,
     description: "Trend-aware content creation that aligns with TikTok's fast-paced algorithm. We create authentic, engaging short-form videos that capture attention and drive viral growth. We handle all aspects of account management so there's no hassle for you—just results.",
     strengths: ["15-60 Second Videos", "Viral Algorithm", "Trending Sounds", "High Organic Reach", "Gen Z & Millennial Focus", "Full Account Management"]
   },
   {
     name: "Instagram",
-    logo: "/images/instagram-logo.png",
+    icon: InstagramIcon,
     description: "Visual storytelling and engagement strategies that capture attention through Reels, Stories, and carefully curated grids. We optimize content for maximum reach and audience growth while managing your entire account, eliminating any hassle for you.",
     strengths: ["Reels", "Stories", "Shopping Integration", "Influencer Hub", "High Engagement", "Full Account Management"]
   },
   {
     name: "YouTube Shorts",
-    logo: "/images/youtube-logo.png",
+    icon: YouTubeIcon,
     description: "Short-form video on YouTube, combining viral potential with the platform's superior search discoverability.",
     strengths: ["60-Second Videos", "Music Library", "Search Discovery", "Cross-Promotion", "Monetization"]
   },
   {
     name: "Pinterest",
-    logo: "/images/pinterest-logo.png",
+    icon: PinterestIcon,
     description: "Ideal for visual discovery and driving traffic to websites, with content that has a longer lifecycle than other platforms.",
     strengths: ["Idea Discovery", "Shopping Integration", "Long Content Lifespan", "High Purchase Intent", "Female Demographic"]
   }

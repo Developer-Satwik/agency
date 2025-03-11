@@ -82,6 +82,35 @@ const Header = () => {
   const scrollProgress = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const router = useRouter();
 
+  // Add effect to prevent body scrolling when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      // When menu opens, prevent scrolling on the body
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      // When menu closes, restore scrolling
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+    
+    return () => {
+      // Cleanup when component unmounts
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+    };
+  }, [isOpen]);
+
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -115,7 +144,7 @@ const Header = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-bone-50/80 backdrop-blur-sm shadow-sm py-3' : 'bg-transparent py-5'}`}
+      className={`fixed top-0 left-0 right-0 ${isOpen ? 'z-[110]' : 'z-50'} transition-all duration-300 ${scrolled ? 'bg-bone-50/80 backdrop-blur-sm shadow-sm py-3' : 'bg-transparent py-5'}`}
     >
       {/* Modern 2025 glass morphism background with improved visibility */}
       <div className={`absolute inset-0 transition-all duration-500 ${
@@ -257,36 +286,45 @@ const Header = () => {
           <motion.div variants={navItemVariants}>
             <Link
               href="https://calendly.com/riseklix/30min"
-              className="relative inline-flex items-center justify-center px-4 py-2 text-lg font-medium text-white transition duration-300 ease-out rounded-lg shadow-md bg-gradient-to-r from-blue-500 to-blue-700 hover:opacity-90"
+              className="relative inline-flex items-center justify-center px-5 py-2.5 text-lg font-medium text-white transition-all duration-300 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 shadow-md hover:shadow-lg active:shadow-inner group overflow-hidden"
               aria-label="Get in Touch"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Get in Touch
-              <svg className="w-4 h-4 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-              </svg>
+              {/* Animated background */}
+              <span className="absolute inset-0 bg-gradient-to-r from-accent-600 to-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></span>
+              
+              {/* Subtle shine effect */}
+              <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/20 to-transparent opacity-50"></span>
+              
+              {/* Button content */}
+              <span className="relative z-10 flex items-center">
+                Get in Touch
+                <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </span>
             </Link>
           </motion.div>
         </motion.nav>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden">
+        <div className="md:hidden z-50 relative">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300 interactive ${
-              scrolled
-                ? 'text-dark hover:bg-gray-100 dark:hover:bg-dark/20'
-                : 'text-white hover:bg-white/10'
-            }`}
+            className={`p-3 rounded-full ${isOpen ? 'bg-primary-500 text-white' : scrolled ? 'bg-white text-dark' : 'bg-dark/10 backdrop-blur-sm text-white'} shadow-lg border border-gray-200/10 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all duration-300 hover:scale-105 active:scale-95`}
             aria-expanded={isOpen}
             aria-label="Toggle menu"
           >
             <span className="sr-only">Toggle menu</span>
             {isOpen ? (
-              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              <XMarkIcon className="h-5 w-5" aria-hidden="true" />
             ) : (
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+              <Bars3Icon className="h-5 w-5" aria-hidden="true" />
+            )}
+            {/* Visual indicator dot when menu is open */}
+            {isOpen && (
+              <span className="absolute top-0 right-0 w-2 h-2 bg-accent-500 rounded-full transform translate-x-1/4 -translate-y-1/4 animate-pulse"></span>
             )}
           </button>
         </div>
@@ -302,16 +340,16 @@ const Header = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-50 md:hidden"
+            className="fixed inset-0 z-[100] md:hidden"
             initial="hidden"
             animate="visible"
             exit="exit"
             variants={mobileMenuVariants}
           >
-            <div className="absolute inset-0 bg-dark/60 backdrop-blur-md" onClick={() => setIsOpen(false)} />
-            <div className="fixed right-0 top-0 h-full w-[80%] max-w-sm bg-gradient-to-b from-light to-gray-50 dark:from-dark/95 dark:to-gray-900/95 shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
-              {/* Mobile Menu Header */}
-              <div className="flex items-center justify-between mb-8">
+            <div className="absolute inset-0 bg-dark/80 backdrop-blur-md" onClick={() => setIsOpen(false)} />
+            <div className="fixed right-0 top-0 h-full w-[80%] max-w-sm bg-gradient-to-b from-light to-gray-50 dark:from-dark/95 dark:to-gray-900/95 shadow-2xl p-6 flex flex-col justify-between overflow-y-auto overflow-x-hidden z-[105]">
+              {/* Mobile Menu Header - Sticky to keep it visible when scrolling */}
+              <div className="sticky top-0 flex items-center justify-between mb-8 pt-1 bg-gradient-to-b from-light to-transparent dark:from-dark/95 dark:to-transparent pb-3 z-10">
                 <Link href="/" className="text-lg font-display font-bold">
                   <span className="text-dark dark:text-white">RISE</span>
                   <span className="gradient-text-neo font-extrabold">KLIX</span>
@@ -326,19 +364,56 @@ const Header = () => {
                 </button>
               </div>
 
-              {/* Mobile Links */}
-              <nav className="flex-1">
+              {/* Mobile Links - Added max-height and overflow to ensure scrollability */}
+              <nav className="flex-1 max-h-[calc(100vh-200px)] overflow-y-auto">
                 <ul className="space-y-4">
                   {navigationItems.map((item) => (
                     <li key={item.name}>
                       <Link
                         href={item.href}
                         onClick={() => setIsOpen(false)}
-                        className={`block py-3 px-4 text-dark dark:text-white hover:text-primary-600 dark:hover:text-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-all duration-300 text-lg font-medium ${
-                          router.pathname === item.href ? 'text-primary-600 dark:text-primary-400 bg-primary-50/50 dark:bg-primary-900/30' : ''
-                        }`}
+                        className={`relative flex items-center py-4 px-5 text-dark dark:text-white rounded-xl transition-all duration-300 text-lg font-medium group
+                          ${router.pathname === item.href 
+                            ? 'bg-primary-50/80 dark:bg-primary-900/40 text-primary-600 dark:text-primary-400' 
+                            : 'hover:bg-gray-50 dark:hover:bg-dark/20'
+                          }`}
                       >
-                        {item.name}
+                        {/* Background hover effect */}
+                        <span 
+                          className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                            ${router.pathname === item.href
+                              ? 'bg-gradient-to-r from-primary-50/30 to-primary-100/30 dark:from-primary-900/20 dark:to-primary-800/20'
+                              : 'bg-gray-50/80 dark:bg-dark/20'
+                            }
+                          `}
+                        ></span>
+                        
+                        {/* Left indicator for active item */}
+                        {router.pathname === item.href && (
+                          <span className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-500 to-accent-500 rounded-l-lg"></span>
+                        )}
+                        
+                        {/* Item content */}
+                        <span className="relative z-10">{item.name}</span>
+                        
+                        {/* Arrow indicator */}
+                        <svg 
+                          className={`ml-auto w-5 h-5 transition-transform duration-300 ${
+                            router.pathname === item.href 
+                              ? 'text-primary-500 translate-x-0' 
+                              : 'text-gray-400 group-hover:translate-x-1 group-hover:text-primary-500'
+                          }`} 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path 
+                            strokeLinecap="round" 
+                            strokeLinejoin="round" 
+                            strokeWidth="2" 
+                            d="M9 5l7 7-7 7"
+                          ></path>
+                        </svg>
                       </Link>
                     </li>
                   ))}
@@ -350,24 +425,43 @@ const Header = () => {
                 <Link
                   href="https://calendly.com/riseklix/discovery"
                   onClick={() => setIsOpen(false)}
-                  className="w-full btn-touch-dark block text-center group relative overflow-hidden"
+                  className="w-full flex items-center justify-center py-4 px-6 rounded-xl bg-gradient-to-br from-primary-600 to-accent-600 text-white font-medium text-lg shadow-lg hover:shadow-xl active:shadow-inner transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden group"
                 >
-                  <span className="btn-content justify-center">
+                  {/* Animated background */}
+                  <span className="absolute inset-0 bg-gradient-to-br from-accent-500 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></span>
+                  
+                  {/* Subtle shine effect */}
+                  <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/20 to-transparent opacity-50"></span>
+                  
+                  {/* Button content */}
+                  <span className="relative flex items-center">
                     Get in Touch
-                    <svg className="w-4 h-4 btn-arrow group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    <svg 
+                      className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth="2" 
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      ></path>
                     </svg>
                   </span>
-                  {/* Enhanced glow effect */}
-                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-primary-600/20 to-accent-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 -z-10 blur-sm"></span>
+                  
+                  {/* Ripple effect for touch feedback */}
+                  <span className="absolute -top-20 -left-20 w-10 h-10 bg-white/30 rounded-full transform scale-0 group-active:scale-[15] transition-transform duration-500 opacity-0 group-active:opacity-100"></span>
                 </Link>
                 
-                <div className="mt-6 flex justify-center space-x-6">
+                {/* Social Icons */}
+                <div className="mt-6 flex justify-center space-x-8 pb-2">
                   <a 
                     href="https://instagram.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-dark dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 relative group"
+                    className="text-dark dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 relative group p-2"
                     aria-label="Instagram"
                   >
                     <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -379,7 +473,7 @@ const Header = () => {
                     href="https://tiktok.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-dark dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 relative group"
+                    className="text-dark dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-300 relative group p-2"
                     aria-label="TikTok"
                   >
                     <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">

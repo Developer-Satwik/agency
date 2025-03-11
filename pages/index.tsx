@@ -116,9 +116,9 @@ const services = [
 
 // Stats data
 const stats = [
-  { value: '500', label: 'Clients', plus: true },
-  { value: '25M', label: 'Followers Gained', plus: true },
-  { value: '200M', label: 'Total Impressions', plus: true },
+  { value: '20', label: 'Clients', plus: true },
+  { value: '5M', label: 'Followers Gained', plus: true },
+  { value: '100M', label: 'Total Impressions', plus: true },
   { value: '97', label: 'Satisfaction Rate', percent: true }
 ];
 
