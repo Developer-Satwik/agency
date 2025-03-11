@@ -358,45 +358,46 @@ export default function About() {
       
       {/* CTA Section */}
       <section className="py-36 relative overflow-hidden">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900 z-0"></div>
+        {/* Background gradient - simplified for minimalism */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-800 to-primary-950 z-0"></div>
         
-        {/* Modern mesh gradient */}
-        <div className="absolute inset-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%25\' height=\'100%25\'%3E%3Cdefs%3E%3ClinearGradient id=\'a\' x1=\'0%25\' y1=\'0%25\' x2=\'100%25\' y2=\'100%25\'%3E%3Cstop offset=\'0%25\' stop-color=\'%23F0F4FF\'/%3E%3Cstop offset=\'100%25\' stop-color=\'%23A5B4FC\'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpattern id=\'b\' width=\'300\' height=\'300\' patternUnits=\'userSpaceOnUse\'%3E%3Ccircle cx=\'150\' cy=\'150\' r=\'120\' fill=\'url(%23a)\'/%3E%3C/pattern%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'url(%23b)\'/%3E%3C/svg%3E")'}}></div>
+        {/* Subtle noise texture */}
+        <div className="absolute inset-0 bg-noise opacity-[0.02] mix-blend-soft-light"></div>
         
-        {/* Noise texture */}
-        <div className="absolute inset-0 bg-noise opacity-[0.03] mix-blend-soft-light"></div>
-        
-        {/* Decorative circles */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/10 rounded-full filter blur-[100px]"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-500/20 rounded-full filter blur-[120px]"></div>
+        {/* Minimal geometric elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary-700/10 rounded-full filter blur-[80px]"></div>
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-500/10 rounded-full filter blur-[90px]"></div>
         
         <div className="container relative z-10">
-          <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-md rounded-3xl p-16 shadow-glow border border-white/20 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-full h-1/2 bg-gradient-to-bl from-white/20 to-transparent"></div>
-            <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-tr from-black/20 to-transparent"></div>
+          <div className="max-w-3xl mx-auto backdrop-blur-sm rounded-2xl p-12 md:p-16 relative overflow-hidden border border-white/10">
+            {/* Subtle gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-white/0"></div>
             
             <div className="text-center relative z-10">
               <motion.h2 
-                className="text-4xl md:text-6xl font-display font-bold mb-8 text-white"
+                className="text-3xl md:text-5xl font-display font-bold mb-6 text-white"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
                 viewport={{ once: true }}
               >
-                Ready to <span className="relative inline-block">
-                  <span className="relative z-10">transform</span>
-                  <span className="absolute -bottom-2 left-0 w-full h-3 bg-accent-500/50 blur-sm rounded-md -z-0"></span>
-                </span> your social presence?
+                Ready to transform your <span className="text-accent-400">digital presence</span>?
               </motion.h2>
+              <motion.div 
+                className="h-0.5 w-24 bg-accent-500/50 mx-auto mb-6"
+                initial={{ width: 0, opacity: 0 }}
+                whileInView={{ width: 96, opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                viewport={{ once: true }}
+              ></motion.div>
               <motion.p 
-                className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto"
+                className="text-lg md:text-xl text-white/80 mb-10 max-w-xl mx-auto font-light"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
                 viewport={{ once: true }}
               >
-                Partner with Riseklix to create content that converts followers into loyal customers
+                Partner with Riseklix to create impactful content that converts followers into loyal customers
               </motion.p>
               
               <motion.div
@@ -404,18 +405,29 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="flex flex-wrap justify-center gap-6"
+                className="flex flex-wrap justify-center"
               >
                 <Link 
                   href="https://calendly.com/riseklix/30min" 
-                  className="btn-touch-light inline-flex items-center px-10 py-5 rounded-xl text-lg group"
+                  className="group relative overflow-hidden"
                 >
-                  <span className="btn-content">
-                    Get in Touch
-                    <svg className="w-5 h-5 ml-2 btn-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                    </svg>
-                  </span>
+                  <div className="relative px-8 py-3 bg-transparent border border-white/30 text-white rounded-lg overflow-hidden group-hover:border-accent-400 transition-all duration-300">
+                    {/* Button background animation */}
+                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-accent-500 to-primary-500 translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500 ease-in-out"></div>
+                    
+                    {/* Button content */}
+                    <div className="relative flex items-center justify-center font-medium text-lg z-10">
+                      <span className="mr-2">Get in Touch</span>
+                      <svg 
+                        className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                      </svg>
+                    </div>
+                  </div>
                 </Link>
               </motion.div>
             </div>
@@ -523,16 +535,44 @@ const InnovationIcon = ({ className }: { className?: string }) => (
 
 const CollaborationIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    {/* Handshake - universal symbol of partnership */}
+    {/* Handshake - universal symbol of partnership and collaboration */}
     <path 
-      d="M9 11l3 3m3-3l-3 3m-3-3l-6-3v7l6 3m6-7l6-3v7l-6 3m-6-3v7" 
+      d="M8 13V17M16 13V17" 
       stroke="currentColor" 
       strokeWidth="2" 
       strokeLinecap="round" 
       strokeLinejoin="round"
     />
     <path 
-      d="M3 8l6 3l6-3l6 3" 
+      d="M8 13H16" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M12 13V10" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M7 10L9 13L12 10L15 13L17 10" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M5 7C6.10457 7 7 6.10457 7 5C7 3.89543 6.10457 3 5 3C3.89543 3 3 3.89543 3 5C3 6.10457 3.89543 7 5 7Z" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M19 7C20.1046 7 21 6.10457 21 5C21 3.89543 20.1046 3 19 3C17.8954 3 17 3.89543 17 5C17 6.10457 17.8954 7 19 7Z" 
       stroke="currentColor" 
       strokeWidth="2" 
       strokeLinecap="round" 
