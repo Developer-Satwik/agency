@@ -415,6 +415,44 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
+          
+          {/* View All Services Button */}
+          <motion.div 
+            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <Link 
+              href="/services" 
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium transition-all duration-300 rounded-xl bg-gradient-to-r from-primary-600 to-accent-600 text-white shadow-lg hover:shadow-xl active:shadow-inner group overflow-hidden relative"
+            >
+              {/* Animated background */}
+              <span className="absolute inset-0 bg-gradient-to-r from-accent-600 to-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"></span>
+              
+              {/* Subtle shine effect */}
+              <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/20 to-transparent opacity-50"></span>
+              
+              {/* Button content */}
+              <span className="relative z-10 flex items-center">
+                View All Services
+                <svg 
+                  className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth="2" 
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  ></path>
+                </svg>
+              </span>
+            </Link>
+          </motion.div>
         </div>
       </section>
 
