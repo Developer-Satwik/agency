@@ -1006,14 +1006,14 @@ const platforms = [
   {
     name: "TikTok",
     logo: "/images/tiktok-logo.png",
-    description: "The fastest-growing platform for short-form video content, perfect for reaching younger audiences and creating viral moments.",
-    strengths: ["15-60 Second Videos", "Viral Algorithm", "Trending Sounds", "High Organic Reach", "Gen Z & Millennial Focus"]
+    description: "Trend-aware content creation that aligns with TikTok's fast-paced algorithm. We create authentic, engaging short-form videos that capture attention and drive viral growth. We handle all aspects of account management so there's no hassle for you—just results.",
+    strengths: ["15-60 Second Videos", "Viral Algorithm", "Trending Sounds", "High Organic Reach", "Gen Z & Millennial Focus", "Full Account Management"]
   },
   {
     name: "Instagram",
     logo: "/images/instagram-logo.png",
-    description: "A visual-first platform with multiple content formats including Reels, Stories, and feed posts to engage diverse audiences.",
-    strengths: ["Reels", "Stories", "Shopping Integration", "Influencer Hub", "High Engagement"]
+    description: "Visual storytelling and engagement strategies that capture attention through Reels, Stories, and carefully curated grids. We optimize content for maximum reach and audience growth while managing your entire account, eliminating any hassle for you.",
+    strengths: ["Reels", "Stories", "Shopping Integration", "Influencer Hub", "High Engagement", "Full Account Management"]
   },
   {
     name: "YouTube Shorts",

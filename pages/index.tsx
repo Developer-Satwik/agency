@@ -8,6 +8,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import SEO from '@/components/shared/SEO';
 import { InstagramIcon, TikTokIcon } from '@/components/shared/SocialIcons';
+import VideoSlideshow from '@/components/shared/VideoSlideshow';
 
 // GSAP Registration
 if (typeof window !== 'undefined') {
@@ -115,10 +116,10 @@ const services = [
 
 // Stats data
 const stats = [
-  { value: '500+', label: 'Clients', plus: true },
-  { value: '25M+', label: 'Followers Gained', plus: true },
-  { value: '200M+', label: 'Total Impressions', plus: true },
-  { value: '97%', label: 'Satisfaction Rate', percent: true }
+  { value: '500', label: 'Clients', plus: true },
+  { value: '25M', label: 'Followers Gained', plus: true },
+  { value: '200M', label: 'Total Impressions', plus: true },
+  { value: '97', label: 'Satisfaction Rate', percent: true }
 ];
 
 const backgroundVariants = {
@@ -463,11 +464,11 @@ export default function Home() {
                   <div className="relative z-10 flex flex-col items-center">
                     <h3 className="flex items-baseline mb-4">
                       <span 
-                        className="stat-number text-[clamp(2.5rem,3vw+2rem,4rem)] bg-clip-text text-transparent bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 font-bold tracking-[-0.03em] tabular-nums" 
+                        className="stat-number text-[clamp(2.5rem,3vw+2rem,4rem)] text-gray-800 font-bold tracking-[-0.03em] tabular-nums" 
                         data-value={stat.value}
                       >0</span>
-                      <span className={`text-primary-500 text-[clamp(1.5rem,2vw+1rem,2.5rem)] font-bold ml-1 ${stat.plus || stat.percent ? 'ml-1' : ''}`}>
-                        {stat.plus ? '+' : stat.percent ? '%' : ''}
+                      <span className={`text-gray-800 text-[clamp(1.5rem,2vw+1rem,2.5rem)] font-bold ml-1 ${stat.plus || stat.percent ? 'ml-1' : ''}`}>
+                        {stat.plus && !stat.value.includes('+') ? '+' : stat.percent && !stat.value.includes('%') ? '%' : ''}
                       </span>
                     </h3>
                     <div className="w-12 h-1 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full mb-4 transform transition-all duration-300 group-hover:scale-x-125 origin-center"></div>
@@ -571,6 +572,7 @@ export default function Home() {
               className="relative w-full lg:w-1/2"
               variants={fadeInUp}
             >
+              {/* Main container with image background */}
               <div className="w-full aspect-[4/3] relative rounded-2xl overflow-hidden border border-bone-100/20 shadow-2xl backdrop-blur-sm">
                 {/* Decorative Elements */}
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary-500/20 rounded-full filter blur-2xl animate-pulse-slow"></div>
@@ -590,20 +592,22 @@ export default function Home() {
 
                 {/* Decorative Grid Pattern */}
                 <div className="absolute inset-0 bg-grid-dark opacity-10"></div>
+                
+                {/* Video Slideshow - Centered in parent container */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-full h-full mx-auto px-2">
+                    <div className="w-full h-full" style={{ minHeight: '300px' }}>
+                      <VideoSlideshow videos={[
+                        "/portfolio videos/DrumRollTony.mp4",
+                        "/portfolio videos/Family Friendly.MP4",
+                        "/portfolio videos/Zmoovey.mp4"
+                      ]} />
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Floating Stats Cards - 2025 Design */}
-              <motion.div
-                className="absolute -bottom-8 -right-8 p-6 glass-card rounded-2xl shadow-2xl backdrop-blur-xl border border-bone-100/10 bg-bone-50/95"
-                initial={{ opacity: 0, y: 30, x: 30 }}
-                whileInView={{ opacity: 1, y: 0, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neo-600 to-primary-600">10x</div>
-                <div className="text-lg font-medium text-gray-700">Average Growth</div>
-              </motion.div>
-
               <motion.div
                 className="absolute -top-6 -left-6 p-4 rounded-2xl shadow-lg backdrop-blur-xl border border-bone-100/10 bg-bone-50/95"
                 initial={{ opacity: 0, y: -20, x: -20 }}
@@ -615,6 +619,17 @@ export default function Home() {
                   <span className="inline-block w-3 h-3 rounded-full bg-neo-500 animate-pulse"></span>
                   <span className="text-sm font-medium text-gray-700">Always Trending</span>
                 </div>
+              </motion.div>
+              
+              <motion.div
+                className="absolute -bottom-8 -right-8 p-6 glass-card rounded-2xl shadow-2xl backdrop-blur-xl border border-bone-100/10 bg-bone-50/95"
+                initial={{ opacity: 0, y: 30, x: 30 }}
+                whileInView={{ opacity: 1, y: 0, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neo-600 to-primary-600">10x</div>
+                <div className="text-lg font-medium text-gray-700">Average Growth</div>
               </motion.div>
             </motion.div>
           </motion.div>
